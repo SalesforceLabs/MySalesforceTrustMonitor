@@ -7,9 +7,9 @@ const STATUS = "/status";
 export default class Truststatus extends LightningElement {
   columns = [
     {
-      label: "Maintnance Id",
-      fieldName: "id",
-      type: "Number"
+      label: "Name",
+      fieldName: "name",
+      type: "String"
     },
     {
       label: "Planned Maintenance Start",
@@ -63,11 +63,12 @@ export default class Truststatus extends LightningElement {
       let mRes = results.Maintenances[mCnt];
       maintenances.push({
         id: mRes.id.toString(),
+        name: mRes.name,
         plannedStartTime: mRes.plannedStartTime,
         plannedEndTime: mRes.plannedEndTime
       });
     }
     this.maintenanceList = this.maintenanceList.concat(maintenances);
-    console.log("maintenanceList" + JSON.stringify(this.maintenancesList));
+    console.debug("maintenanceList" + JSON.stringify(this.maintenancesList));
   }
 }
