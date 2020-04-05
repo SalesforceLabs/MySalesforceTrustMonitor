@@ -1,4 +1,14 @@
 <template>
-  <lightning-datatable key-field="id" columns={columns} data={maintenanceList}>
-  </lightning-datatable>
+  <lightning-tabset>
+    <lightning-tab label="Products"></lightning-tab>
+    <lightning-tab label="Maintenances">
+      <lightning-datatable
+        key-field="id"
+        columns={columns}
+        data={maintenanceList}
+      >
+      </lightning-datatable>
+    </lightning-tab>
+    <lightning-tab label="Incidents"></lightning-tab>
+  </lightning-tabset>
 </template>
