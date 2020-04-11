@@ -1,0 +1,22 @@
+<template>
+  <template if:true={products}>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+      <tr>
+        <th>Name</th>
+        <th>Active</th>
+      </tr>
+      <template for:each={products} for:item="product">
+        <tr key={product.name}>
+          <td>{product.name}</td>
+          <td>
+            <lightning-icon
+              icon-name={product.status}
+              variant={product.statusVariant}
+              size="small"
+            ></lightning-icon>
+          </td>
+        </tr>
+      </template>
+    </table>
+  </template>
+</template>

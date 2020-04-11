@@ -1,11 +1,47 @@
 <template>
+  <!-- Instance Information : Start -->
+  <template if:true={instance}>
+    <lightning-card>
+      <h3 slot="title">
+        <div>
+          {instance.name}&nbsp;
+          <lightning-icon
+            icon-name={instance.status}
+            variant={instance.statusVariant}
+            size="large"
+          ></lightning-icon>
+        </div>
+      </h3>
+
+      <p class="slds-p-horizontal_small">
+        Instance Location : {instance.location}
+      </p>
+      <p class="slds-p-horizontal_small">
+        Environment : {instance.environment}
+      </p>
+      <p class="slds-p-horizontal_small">
+        Current Release : {instance.releaseVersion}
+      </p>
+      <p class="slds-p-horizontal_small">
+        Current Release # : {instance.releaseNumber}
+      </p>
+    </lightning-card>
+  </template>
+  <!-- Instance Information : End -->
   <lightning-tabset>
-    <lightning-tab label="Products"></lightning-tab>
+    <lightning-tab label="Products">
+      <c-trustproducts products={products}></c-trustproducts>
+    </lightning-tab>
+    <lightning-tab label="Services">
+      <c-trustproducts products={services}></c-trustproducts>
+    </lightning-tab>
     <lightning-tab label="Maintenances">
       <lightning-datatable
         key-field="id"
-        columns={columns}
+        columns={maintenanceCols}
         data={maintenanceList}
+        hide-checkbox-column
+        show-row-number-column
       >
       </lightning-datatable>
     </lightning-tab>
