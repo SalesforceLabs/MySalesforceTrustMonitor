@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { LightningElement } from "lwc";
-import { api, track, wire } from "lwc";
+import { LightningElement, api, track, wire } from "lwc";
+import retrieveOrgTrustStatus from "@salesforce/apex/OrgTrustController.retrieveOrgTrustStatus";
 
 const QUERY_URL = "https://api.status.salesforce.com/v1/instanceAliases/";
 const STATUS = "/status";
@@ -103,27 +103,47 @@ export default class Truststatus extends LightningElement {
     }
   ];
 
-  @api instanceId;
+  @api instanceKey = "NWNA";
+  @api keyType = "DOMAIN";
   @track instanceStatus;
   @track instanceStatusString;
   @track accountId;
-  @track maintenanceList = [
-    // { id: 123, plannedStartTime: 2 / 22 / 2020, plannedEndTime: "2/23/2020" }
-  ];
+  @track maintenanceList = [];
   @track instanceInfo = {};
 
   @track products = [];
   @track services = [];
   @track incidents = [];
   @track instance;
+  @track error;
 
+  /*
   connectedCallback() {
-    this.retrieveInstanceStatus();
+    //  this.retrieveInstanceStatus();
+  }
+*/
+  @wire(retrieveOrgTrustStatus, {
+    instanceKey: "$instanceKey",
+    keyType: "$keyType"
+  })
+  wiredRetrieveOrgTrustStatus({ error, Data }) {
+    if (Data) {
+      console.debug(JSON.stringify(Data));
+      this.processResponse(Data);
+      this.processProducts(Data);
+      this.processIncidents(Data);
+      this.processInstanceInfo(Data);
+      this.processServices(Data);
+    } else if (error) {
+      this.error = error;
+    }
   }
 
   retrieveInstanceStatus() {
     fetch(
-      QUERY_URL + (this.instanceId != null ? this.instanceId : "NWNA") + STATUS
+      QUERY_URL +
+        (this.instanceKey != null ? this.instanceKey : "NWNA") +
+        STATUS
     )
       .then(response => {
         if (!response.ok) {
