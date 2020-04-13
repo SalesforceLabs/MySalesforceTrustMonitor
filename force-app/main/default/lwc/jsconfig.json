@@ -1,20 +1,14 @@
 {
-    "compilerOptions": {
-        "experimentalDecorators": true,
-        "baseUrl": ".",
-        "paths": {
-            "c/truststatus": [
-                "truststatus/truststatus.js"
-            ]
-        }
-    },
-    "include": [
-        "**/*",
-        "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ],
-    "typeAcquisition": {
-        "include": [
-            "jest"
-        ]
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "c/truststatus": ["truststatus/truststatus.js"],
+      "c/trustproducts": ["trustproducts/trustproducts.js"]
     }
+  },
+  "include": ["**/*", "../../../../.sfdx/typings/lwc/**/*.d.ts"],
+  "typeAcquisition": {
+    "include": ["jest"]
+  }
 }
