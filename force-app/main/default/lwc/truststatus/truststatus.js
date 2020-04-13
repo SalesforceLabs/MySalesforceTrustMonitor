@@ -126,14 +126,15 @@ export default class Truststatus extends LightningElement {
     instanceKey: "$instanceKey",
     keyType: "$keyType"
   })
-  wiredRetrieveOrgTrustStatus({ error, Data }) {
-    if (Data) {
-      console.debug(JSON.stringify(Data));
-      this.processResponse(Data);
-      this.processProducts(Data);
-      this.processIncidents(Data);
-      this.processInstanceInfo(Data);
-      this.processServices(Data);
+  wiredRetrieveOrgTrustStatus({ error, data }) {
+    console.debug("Data => " + JSON.stringify(data));
+    if (data) {
+      console.debug(JSON.stringify(data));
+      this.processResponse(data);
+      this.processProducts(data);
+      this.processIncidents(data);
+      this.processInstanceInfo(data);
+      this.processServices(data);
     } else if (error) {
       this.error = error;
     }

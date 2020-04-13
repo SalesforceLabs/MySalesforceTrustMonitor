@@ -10,13 +10,14 @@ public with sharing class OrgTrustController {
   }
 
   @AuraEnabled(cacheable=true)
-  public static string retrieveOrgTrustStatus(
+  public static map<String, Object> retrieveOrgTrustStatus(
     String instanceKey,
     String keyType
   ) {
     String URL_BASE = 'https://api.status.salesforce.com/v1/';
     String URL_STATUS = '/status';
     String URL_ENDPOINT;
+    map<String, Object> mapResults = new Map<String, Object>();
 
     System.debug('KeyType => ' + keyType + ' InstanceKey => ' + instanceKey);
 
@@ -41,6 +42,10 @@ public with sharing class OrgTrustController {
       System.debug('Response Body => ' + response.getBody());
       results = response.getBody();
     }
-    return results;
+    if (!String.isBlank(results)) {
+      mapResults = (map<String, Object>) JSON.deserializeUntyped(results);
+      System.debug('Deserialized Data => ' + mapResults);
+    }
+    return mapResults;
   }
 }
