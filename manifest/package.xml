@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>*</members>
+        <members>OrgTrustController</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
+        <members>trustmaintenance</members>
+        <members>trustproduct</members>
+        <members>truststatus</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>*</members>
+        <members>SalesforceTrustAPI</members>
         <name>CspTrustedSite</name>
+    </types>
+    <types>
+        <members>TrustAPI</members>
+        <name>RemoteSiteSetting</name>
     </types>
     <version>48.0</version>
 </Package>
