@@ -36,7 +36,10 @@ class Incident {
     isCore,
     additionalInfo,
     createdAt,
-    updatedAt
+    updatedAt,
+    instanceKeys,
+    serviceKeys,
+    impacts
   ) {
     this.id = id;
     this.message = message;
@@ -46,6 +49,16 @@ class Incident {
     this.additionalInfo = additionalInfo;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.instanceKeys = instanceKeys;
+    this.serviceKeys = serviceKeys;
+    this.impacts = impacts;
+  }
+  get hasMessage() {
+    return this.message.length > 0 ? true : false;
+  }
+
+  get hasImpacts() {
+    return this.impacts.length > 0 ? true : false;
   }
 }
 
@@ -73,12 +86,22 @@ class Instance {
 }
 
 class Maintenance {
-  constructor(id, name, plannedStartTime, plannedEndTime, type) {
+  constructor(
+    id,
+    name,
+    plannedStartTime,
+    plannedEndTime,
+    type,
+    instanceKeys,
+    serviceKeys
+  ) {
     this.id = id;
     this.name = name;
     this.plannedStartTime = plannedStartTime;
     this.plannedEndTime = plannedEndTime;
     this.type = type;
+    this.instanceKeys = instanceKeys;
+    this.serviceKeys = serviceKeys;
   }
 }
 
@@ -103,8 +126,8 @@ export default class Truststatus extends LightningElement {
     }
   ];
 
-  @api instanceKey = "NWNA";
-  @api keyType = "DOMAIN";
+  @api instanceKey = "CS115";
+  @api keyType = "INSTANCE";
   @track instanceStatus;
   @track instanceStatusString;
   @track accountId;
@@ -172,15 +195,19 @@ export default class Truststatus extends LightningElement {
   processMaintenances(results) {
     // alert("Process" + results.Maintenances.length);
     let maintenanceList = [];
-    for (let mCnt = 0; mCnt < results.Maintenances.length; mCnt++) {
-      let mRes = results.Maintenances[mCnt];
+    let mRes;
+    // eslint-disable-next-line guard-for-in
+    for (let mCnt in results.Maintenances) {
+      mRes = results.Maintenances[mCnt];
       maintenanceList.push(
         new Maintenance(
           mRes.id,
           mRes.name,
           mRes.plannedStartTime,
           mRes.plannedEndTime,
-          mRes.message.maintenanceType
+          mRes.message.maintenanceType,
+          mRes.instanceKeys,
+          mRes.serviceKeys
         )
       );
       /*  {
@@ -243,7 +270,19 @@ export default class Truststatus extends LightningElement {
     // eslint-disable-next-line guard-for-in
     for (let iCnt in results.Incidents) {
       inc = results.Incidents[iCnt];
-      incident = new Incident(inc.key, inc.order, inc.isActive);
+      incident = new Incident(
+        inc.id,
+        inc.message,
+        inc.externalId,
+        inc.affectsAll,
+        inc.isCore,
+        inc.additionalInformation,
+        inc.createdAt,
+        inc.updatedAt,
+        inc.instanceKeys,
+        inc.serviceKeys,
+        inc.IncidentImpacts
+      );
       if (incident) {
         incidentList.push(incident);
       }

@@ -1,12 +1,14 @@
 <template>
   <template if:true={products}>
-    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
-      <tr>
-        <th>Name</th>
+    <table
+      class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped"
+    >
+      <tr class="slds-line-height_reset">
+        <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
         <th>Active</th>
       </tr>
       <template for:each={products} for:item="product">
-        <tr key={product.name}>
+        <tr key={product.name} class="slds-line-height_reset">
           <td>{product.name}</td>
           <td>
             <lightning-icon

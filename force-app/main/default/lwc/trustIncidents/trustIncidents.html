@@ -1,0 +1,82 @@
+<template>
+  <lightning-accordion>
+    <template for:each={incidents} for:item="incident">
+      <lightning-accordion-section
+        key={incident.id}
+        name={incident.id}
+        label={incident.id}
+      >
+        <p class="slds-p-horizontal_small">
+          Incident Id : {incident.id}
+        </p>
+        <template if:true={incident.hasMessage}>
+          <p class="slds-p-horizontal_small">
+            Incident Info : {incident.message}
+          </p>
+        </template>
+        <p class="slds-p-horizontal_small">
+          Incident Affects All : {incident.affectsAll}
+        </p>
+        <p class="slds-p-horizontal_small">
+          Additional Information : {incident.additionalInfo}
+        </p>
+        <p class="slds-p-horizontal_small">
+          Created At : {incident.createdAt}
+        </p>
+        <p class="slds-p-horizontal_small">
+          Updated At : {incident.createdAt}
+        </p>
+        <p class="slds-p-horizontal_small">
+          Impacted Instances : {incident.instanceKeys}
+        </p>
+        <p class="slds-p-horizontal_small">
+          Service Keys : {incident.serviceKeys}
+        </p>
+        <!-- Incident Impacts displayed with the card layout : Start-->
+        <template for:each={incident.impacts} for:item="impact">
+          <div key={impact.id} class="">
+            <lightning-card title={impact.id} key={impact.id}>
+              <p class="slds-p-horizontal_small">
+                Severity Level : {impact.severity}
+              </p>
+              <p class="slds-p-horizontal_small">
+                Impact Type : {impact.type}
+              </p>
+              <p class="slds-p-horizontal_small">
+                Start Time : {impact.startTime}
+              </p>
+              <p class="slds-p-horizontal_small">
+                End Time : {impact.endTime}
+              </p>
+            </lightning-card>
+          </div>
+        </template>
+        <!-- Incident Impacts displayed with the card layout : End-->
+        <template if:true={incident.hasImpacts}>
+          <lightning-accordion active-section-name="">
+            <template for:each={incident.impacts} for:item="impact">
+              <lightning-accordion-section
+                key={impact.id}
+                name={impact.id}
+                label={impact.id}
+              >
+                <p class="slds-p-horizontal_small">
+                  Severity Level : {impact.severity}
+                </p>
+                <p class="slds-p-horizontal_small">
+                  Impact Type : {impact.type}
+                </p>
+                <p class="slds-p-horizontal_small">
+                  Start Time : {impact.startTime}
+                </p>
+                <p class="slds-p-horizontal_small">
+                  End Time : {impact.endTime}
+                </p>
+              </lightning-accordion-section>
+            </template>
+          </lightning-accordion>
+        </template>
+      </lightning-accordion-section>
+    </template>
+  </lightning-accordion>
+</template>

@@ -23,7 +23,7 @@
         Current Release : {instance.releaseVersion}
       </p>
       <p class="slds-p-horizontal_small">
-        Current Release # : {instance.releaseNumber}
+        Current Release : {instance.releaseNumber}
       </p>
     </lightning-card>
   </template>
@@ -47,6 +47,8 @@
       </lightning-datatable>
     -->
     </lightning-tab>
-    <lightning-tab label="Incidents"></lightning-tab>
+    <lightning-tab label="Incidents">
+      <c-trust-incidents incidents={incidents}></c-trust-incidents>
+    </lightning-tab>
   </lightning-tabset>
 </template>
