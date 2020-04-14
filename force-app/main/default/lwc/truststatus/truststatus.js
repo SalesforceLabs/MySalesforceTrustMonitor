@@ -108,7 +108,7 @@ export default class Truststatus extends LightningElement {
   @track instanceStatus;
   @track instanceStatusString;
   @track accountId;
-  @track maintenanceList = [];
+  @track maintenances = [];
   @track instanceInfo = {};
 
   @track products = [];
@@ -130,7 +130,7 @@ export default class Truststatus extends LightningElement {
     console.debug("Data => " + JSON.stringify(data));
     if (data) {
       console.debug(JSON.stringify(data));
-      this.processResponse(data);
+      this.processMaintenances(data);
       this.processProducts(data);
       this.processIncidents(data);
       this.processInstanceInfo(data);
@@ -157,7 +157,7 @@ export default class Truststatus extends LightningElement {
         console.log(jsonResponse);
         this.instanceStatus = jsonResponse;
         this.instanceStatusString = JSON.stringify(this.instanceStatus);
-        this.processResponse(jsonResponse);
+        this.processMaintenances(jsonResponse);
         this.processProducts(jsonResponse);
         this.processIncidents(jsonResponse);
         this.processInstanceInfo(jsonResponse);
@@ -169,12 +169,12 @@ export default class Truststatus extends LightningElement {
       });
   }
 
-  processResponse(results) {
+  processMaintenances(results) {
     // alert("Process" + results.Maintenances.length);
-    let maintenances = [];
+    let maintenanceList = [];
     for (let mCnt = 0; mCnt < results.Maintenances.length; mCnt++) {
       let mRes = results.Maintenances[mCnt];
-      maintenances.push(
+      maintenanceList.push(
         new Maintenance(
           mRes.id,
           mRes.name,
@@ -190,8 +190,8 @@ export default class Truststatus extends LightningElement {
         plannedEndTime: mRes.plannedEndTime
       });*/
     }
-    this.maintenanceList = this.maintenanceList.concat(maintenances);
-    console.debug("maintenanceList" + JSON.stringify(this.maintenanceList));
+    this.maintenances = this.maintenances.concat(maintenanceList);
+    console.debug("maintenances" + JSON.stringify(this.maintenances));
   }
   processInstanceInfo(results) {
     this.instance = new Instance(

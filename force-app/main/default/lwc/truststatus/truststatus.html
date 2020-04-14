@@ -36,7 +36,8 @@
       <c-trustproducts products={services}></c-trustproducts>
     </lightning-tab>
     <lightning-tab label="Maintenances">
-      <lightning-datatable
+      <c-trustmaintenance maintenances={maintenances}></c-trustmaintenance>
+      <!--  <lightning-datatable
         key-field="id"
         columns={maintenanceCols}
         data={maintenanceList}
@@ -44,6 +45,7 @@
         show-row-number-column
       >
       </lightning-datatable>
+    -->
     </lightning-tab>
     <lightning-tab label="Incidents"></lightning-tab>
   </lightning-tabset>

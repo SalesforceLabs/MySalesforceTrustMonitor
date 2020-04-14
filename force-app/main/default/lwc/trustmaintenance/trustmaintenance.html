@@ -1,0 +1,24 @@
+<template>
+  <lightning-accordion>
+    <template for:each={maintenances} for:item="maintenance">
+      <lightning-accordion-section
+        key={maintenance.id}
+        name={maintenance.id}
+        label={maintenance.name}
+      >
+        <p class="slds-p-horizontal_small">
+          Maintenance Id : {maintenance.id}
+        </p>
+        <p class="slds-p-horizontal_small">
+          Maintenance Type : {maintenance.type}
+        </p>
+        <p class="slds-p-horizontal_small">
+          Planned Start Time : {maintenance.plannedStartTime}
+        </p>
+        <p class="slds-p-horizontal_small">
+          Planned End Time : {maintenance.plannedEndTime}
+        </p>
+      </lightning-accordion-section>
+    </template>
+  </lightning-accordion>
+</template>
