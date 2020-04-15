@@ -1,54 +1,38 @@
 <template>
-  <!-- Instance Information : Start -->
+  <!-- trying to style the content-->
   <template if:true={instance}>
-    <lightning-card>
-      <h3 slot="title">
-        <div>
-          {instance.name}&nbsp;
-          <lightning-icon
-            icon-name={instance.status}
-            variant={instance.statusVariant}
-            size="large"
-          ></lightning-icon>
+    <div class="app slds-p-around_x-large slds-grid_align-center slds-gutters">
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 instanceBox">
+          <lightning-card  variant="Narrow">          
+            <h3 slot="title">
+              <lightning-icon icon-name="standard:orders" size="small" class="slds-m-right_small"></lightning-icon>
+              <span>{instance.name}</span>
+              <lightning-icon icon-name={instance.status} variant={instance.statusVariant} size="small" class="slds-float_right"></lightning-icon>
+            </h3>
+            <p class="slds-p-horizontal_small">Instance Location : {instance.location}</p>
+            <p class="slds-p-horizontal_small">Environment : {instance.environment}</p>
+            <p class="slds-p-horizontal_small">Current Release : {instance.releaseVersion}</p>
+            <p class="slds-p-horizontal_small">Current Release # : {instance.releaseNumber}</p>
+          </lightning-card>
         </div>
-      </h3>
-
-      <p class="slds-p-horizontal_small">
-        Instance Location : {instance.location}
-      </p>
-      <p class="slds-p-horizontal_small">
-        Environment : {instance.environment}
-      </p>
-      <p class="slds-p-horizontal_small">
-        Current Release : {instance.releaseVersion}
-      </p>
-      <p class="slds-p-horizontal_small">
-        Current Release : {instance.releaseNumber}
-      </p>
-    </lightning-card>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12">
+          <lightning-tabset variant="scoped">
+            <lightning-tab label="Products">
+              <c-trustproducts products={products}></c-trustproducts>
+            </lightning-tab>
+            <lightning-tab label="Services">
+              <c-trustproducts products={services}></c-trustproducts>
+            </lightning-tab>
+            <lightning-tab label="Maintenances">
+              <c-trustmaintenance maintenances={maintenances}></c-trustmaintenance>
+            </lightning-tab>
+            <lightning-tab label="Incidents">
+              <c-trust-incidents incidents={incidents}></c-trust-incidents>
+            </lightning-tab>
+          </lightning-tabset>
+        </div>
+      </div>
+    </div>
   </template>
-  <!-- Instance Information : End -->
-  <lightning-tabset>
-    <lightning-tab label="Products">
-      <c-trustproducts products={products}></c-trustproducts>
-    </lightning-tab>
-    <lightning-tab label="Services">
-      <c-trustproducts products={services}></c-trustproducts>
-    </lightning-tab>
-    <lightning-tab label="Maintenances">
-      <c-trustmaintenance maintenances={maintenances}></c-trustmaintenance>
-      <!--  <lightning-datatable
-        key-field="id"
-        columns={maintenanceCols}
-        data={maintenanceList}
-        hide-checkbox-column
-        show-row-number-column
-      >
-      </lightning-datatable>
-    -->
-    </lightning-tab>
-    <lightning-tab label="Incidents">
-      <c-trust-incidents incidents={incidents}></c-trust-incidents>
-    </lightning-tab>
-  </lightning-tabset>
 </template>

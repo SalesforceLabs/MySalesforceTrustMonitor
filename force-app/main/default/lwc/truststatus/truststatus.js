@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import { LightningElement, api, track, wire } from "lwc";
 import retrieveOrgTrustStatus from "@salesforce/apex/OrgTrustController.retrieveOrgTrustStatus";
+import { CurrentPageReference } from 'lightning/navigation';
+import { registerListener, unregisterAllListeners } from 'c/pubsub';
 
 const QUERY_URL = "https://api.status.salesforce.com/v1/instanceAliases/";
 const STATUS = "/status";
@@ -126,6 +128,7 @@ export default class Truststatus extends LightningElement {
     }
   ];
 
+  @wire(CurrentPageReference) pageRef;   
   @api instanceKey = "CS115";
   @api keyType = "INSTANCE";
   @track instanceStatus;
@@ -145,6 +148,22 @@ export default class Truststatus extends LightningElement {
     //  this.retrieveInstanceStatus();
   }
 */
+
+  connectedCallback() {
+    // subscribe to bearListUpdate event
+    registerListener('getStatus', this.handleGetStatus, this);
+  }
+
+  disconnectedCallback() {
+    // unsubscribe from bearListUpdate event
+    unregisterAllListeners(this);
+  }
+
+  handleGetStatus(eventData) {
+    this.instanceKey = eventData.instanceKey;
+    this.keyType = eventData.keyType;
+  }
+
   @wire(retrieveOrgTrustStatus, {
     instanceKey: "$instanceKey",
     keyType: "$keyType"
