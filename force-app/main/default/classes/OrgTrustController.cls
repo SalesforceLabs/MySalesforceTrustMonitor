@@ -1,6 +1,4 @@
 public with sharing class OrgTrustController {
-  public OrgTrustController() {
-  }
 
   private enum OrgKeyType {
     DOMAIN,
@@ -9,33 +7,29 @@ public with sharing class OrgTrustController {
     MID
   }
 
+  public static final String SEARCH_INSTANCE_SERVICE = 'search/';
+  public static final String STATUS_SERVICE = '/status';
+  public static final String DOMAIN_ENDPOINT = 'instanceAliases/';
+  public static final String INSTANCE_ENDPOINT = 'instances/';
+  public static final String CHILD_PRODUCTS_SERVICE = '?childProducts=true';
+
   @AuraEnabled(cacheable=true)
-  public static map<String, Object> retrieveOrgTrustStatus(
-    String instanceKey,
-    String keyType
-  ) {
-    String URL_BASE = 'https://api.status.salesforce.com/v1/';
-    String URL_STATUS = '/status';
-    String URL_ENDPOINT;
-    map<String, Object> mapResults = new Map<String, Object>();
+  public static map<String, Object> retrieveOrgTrustStatus(String instanceKey,String keyType) {
+
+    Map<String, Object> mapResults = new Map<String, Object>();
 
     System.debug('KeyType => ' + keyType + ' InstanceKey => ' + instanceKey);
 
-    if (OrgKeyType.DOMAIN.name().equals(keyType)) {
-      URL_ENDPOINT = URL_BASE + 'instanceAliases/' + instanceKey + URL_STATUS;
-    } else if (OrgKeyType.INSTANCE.name().equals(keyType)) {
-      URL_ENDPOINT =
-        URL_BASE +
-        'instances/' +
-        instanceKey +
-        URL_STATUS +
-        '?childProducts=true';
-    }
-
     Http http = new HTTP();
     HttpRequest request = new HttpRequest();
-    request.setEndpoint(URL_ENDPOINT);
     request.setMethod('GET');
+    if (OrgKeyType.DOMAIN.name().equals(keyType)) {
+      request.setEndpoint('callout:SFDC_TRUST/'+DOMAIN_ENDPOINT+instanceKey+STATUS_SERVICE);
+    }
+    else if (OrgKeyType.INSTANCE.name().equals(keyType))  {
+      request.setEndpoint('callout:SFDC_TRUST/'+INSTANCE_ENDPOINT+instanceKey+STATUS_SERVICE+CHILD_PRODUCTS_SERVICE);
+    }
+    
     String results;
     HttpResponse response = http.send(request);
     if (response.getStatusCode() == 200) {
@@ -47,5 +41,47 @@ public with sharing class OrgTrustController {
       System.debug('Deserialized Data => ' + mapResults);
     }
     return mapResults;
+  }
+
+  @AuraEnabled(cacheable=true)
+  public static List<SFDCInstance> getInstanceList(String inputString)    {
+      List<SFDCInstance> instances = new List<SFDCInstance>();
+      HttpRequest httpRequest = new HttpRequest();
+      httpRequest.setEndpoint('callout:SFDC_TRUST/'+SEARCH_INSTANCE_SERVICE+inputString);
+      httpRequest.setMethod('GET');
+
+      Http http = new Http();
+      try{
+          HTTPResponse httpResponse = http.send(httpRequest);
+          instances = (List<SFDCInstance>)JSON.deserialize(httpResponse.getBody(),List<SFDCInstance>.class);
+          if (!instances.isEmpty()){
+              Integer idCtr = 0;
+              for (SFDCInstance sfdcInstance : instances)  {
+                  sfdcInstance.id = idCtr++ ;
+              }
+          }
+          return instances;
+      }
+      catch(Exception e){
+          return null;
+      }       
+  }
+
+  public class SFDCInstance{
+        
+    @AuraEnabled public Integer id;
+
+    //instance field
+    @AuraEnabled public String key;
+    @AuraEnabled public String location;
+    @AuraEnabled public String environment;
+    @AuraEnabled public Boolean isActive;
+    @AuraEnabled public String type;
+
+    //domain fields
+    @AuraEnabled public String alias;
+    @AuraEnabled public String instanceKey;
+    //@AuraEnabled public String type;
+    @AuraEnabled public String aliasType;
   }
 }
