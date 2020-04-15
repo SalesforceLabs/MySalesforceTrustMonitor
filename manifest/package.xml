@@ -8,15 +8,15 @@
         <members>trustmaintenance</members>
         <members>trustproduct</members>
         <members>truststatus</members>
+        <members>trustIncidents</members>
+        <members>instanceSearch</members>
+        <members>instanceSearchResultTile</members>
+        <members>pubsub</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>SalesforceTrustAPI</members>
-        <name>CspTrustedSite</name>
-    </types>
-    <types>
-        <members>TrustAPI</members>
-        <name>RemoteSiteSetting</name>
+        <members>SFDC_TRUST</members>
+        <name>NamedCredential</name>
     </types>
     <version>48.0</version>
 </Package>
