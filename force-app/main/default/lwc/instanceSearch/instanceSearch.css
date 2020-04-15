@@ -1,0 +1,17 @@
+.app{
+    margin: auto;
+    background-color: white;
+}
+.searchBox{
+    /*width: 500px;*/
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 1rem;
+}
+.resultBox{
+    /*margin-left: 72px;*/
+    margin: auto;
+}
+.cardsLayout{
+    flex-wrap: wrap;
+}

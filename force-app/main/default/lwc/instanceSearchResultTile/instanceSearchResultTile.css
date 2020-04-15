@@ -1,0 +1,13 @@
+.cardSize{
+    width: 240px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+.menuItemClass{
+    line-height: .75;
+    font-weight: 400;
+    font-size: 12px;
+}
+.actionButtons{
+    margin-left: 2px;
+}
