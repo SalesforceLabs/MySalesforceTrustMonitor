@@ -160,6 +160,12 @@ export default class Truststatus extends LightningElement {
   }
 
   handleGetStatus(eventData) {
+    this.maintenances = [];
+    this.products = [];
+    this.incidents = [];
+    this.services = [];
+    this.instanceInfo = {};
+
     this.instanceKey = eventData.instanceKey;
     this.keyType = eventData.keyType;
   }
