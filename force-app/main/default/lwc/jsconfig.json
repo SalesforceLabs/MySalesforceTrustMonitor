@@ -3,17 +3,26 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/truststatus": [
-                "truststatus/truststatus.js"
+            "c/instanceSearch": [
+                "instanceSearch/instanceSearch.js"
             ],
-            "c/trustproducts": [
-                "trustproducts/trustproducts.js"
+            "c/instanceSearchResultTile": [
+                "instanceSearchResultTile/instanceSearchResultTile.js"
+            ],
+            "c/pubsub": [
+                "pubsub/pubsub.js"
+            ],
+            "c/trustIncidents": [
+                "trustIncidents/trustIncidents.js"
             ],
             "c/trustmaintenance": [
                 "trustmaintenance/trustmaintenance.js"
             ],
-            "c/trustIncidents": [
-                "trustIncidents/trustIncidents.js"
+            "c/trustproducts": [
+                "trustproducts/trustproducts.js"
+            ],
+            "c/truststatus": [
+                "truststatus/truststatus.js"
             ]
         }
     },
