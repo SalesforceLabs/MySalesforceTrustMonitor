@@ -37,7 +37,7 @@ public with sharing class OrgTrustController {
       results = response.getBody();
     }
     if (!String.isBlank(results)) {
-      mapResults = (map<String, Object>) JSON.deserializeUntyped(results);
+      mapResults = (Map<String, Object>) JSON.deserializeUntyped(results);
       System.debug('Deserialized Data => ' + mapResults);
     }
     return mapResults;

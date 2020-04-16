@@ -2,6 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>OrgTrustController</members>
+        <members>OrgTrustControllerTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -18,6 +19,10 @@
     <types>
         <members>SFDC_TRUST</members>
         <name>NamedCredential</name>
+    </types>
+        <types>
+        <members>OrgTrustStaticMockResponse</members>
+        <name>StaticResource</name>
     </types>
     <version>48.0</version>
 </Package>

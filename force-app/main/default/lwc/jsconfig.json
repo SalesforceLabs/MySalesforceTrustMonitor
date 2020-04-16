@@ -15,6 +15,9 @@
             "c/trustIncidents": [
                 "trustIncidents/trustIncidents.js"
             ],
+            "c/trustService": [
+                "trustService/trustService.js"
+            ],
             "c/trustmaintenance": [
                 "trustmaintenance/trustmaintenance.js"
             ],
