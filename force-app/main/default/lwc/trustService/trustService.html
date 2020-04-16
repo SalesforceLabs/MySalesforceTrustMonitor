@@ -3,11 +3,13 @@
         Current Status By Service
     </div>
     <!-- need to automate color scheme here-->
-    <div class="slds-p-around_medium bannerClass slds-m-bottom_small">
-        <span>OVERALL SYSTEM</span>
-        <span class="slds-float_right">
-            <lightning-icon icon-name="utility:success" size="small" variant="inverse"></lightning-icon>
-        </span>
+    <div class={bannerClassName}>
+        <div class="slds-p-around_medium slds-m-bottom_small">
+            <span>OVERALL SYSTEM</span>
+            <span class="slds-float_right">
+                <lightning-icon icon-name={instance.status} size="small" variant="inverse"></lightning-icon>
+            </span>
+        </div>
     </div>
     <template if:true={services}>
         <div class="slds-grid slds-wrap">       

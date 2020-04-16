@@ -1,5 +1,11 @@
-.bannerClass{
+.successBannerClass{
     background-color: rgb(75, 192, 119);
+}
+.errorBannerClass{
+    background-color: rgb(212, 80, 76);
+}
+.warningBannerClass{
+    background-color: rgb(255, 183, 93);
 }
 .serviceDiv{
     border: 1px solid #D8DDE6;
