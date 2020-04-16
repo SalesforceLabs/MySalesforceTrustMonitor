@@ -24,6 +24,8 @@ export default class InstanceSearch extends LightningElement {
     }
 
     handleSearch (){
+        this.instances = null;
+        this.domains = null;
         getInstanceList({inputString : this.inputString})
         .then(result => {
             this.sfdcinstances = result;

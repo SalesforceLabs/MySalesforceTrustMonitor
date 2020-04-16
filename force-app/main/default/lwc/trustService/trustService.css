@@ -1,0 +1,10 @@
+.bannerClass{
+    background-color: rgb(75, 192, 119);
+}
+.serviceDiv{
+    border: 1px solid #D8DDE6;
+}
+.serviceName{
+    border-bottom: 1px solid #D8DDE6;
+    background-color: #F4F6F9;
+}

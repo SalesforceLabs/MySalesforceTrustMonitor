@@ -10,19 +10,42 @@
               <span>{instance.name}</span>
               <lightning-icon icon-name={instance.status} variant={instance.statusVariant} size="small" class="slds-float_right"></lightning-icon>
             </h3>
-            <p class="slds-p-horizontal_small">Instance Location : {instance.location}</p>
+            <div class="slds-m-around_small">
+              <div class="slds-text-color_weak">Region :</div>
+              <div>{instance.location}</div>
+            </div>
+            <div class="slds-m-around_small">
+              <div class="slds-text-color_weak">Environment :</div>
+              <div>{instance.environment}</div>
+            </div>
+            <div class="slds-m-around_small">
+              <div class="slds-text-color_weak">Release Version :</div>
+              <div>{instance.releaseVersion}</div>
+            </div>
+            <div class="slds-m-around_small">
+              <div class="slds-text-color_weak">Release Number :</div>
+              <div>{instance.releaseNumber}</div>
+            </div>
+            <div class="slds-m-around_small">
+              <div class="slds-text-color_weak">Products :</div>
+              <div>
+                <c-trustproducts products={products}></c-trustproducts>
+              </div>
+            </div>
+            <!--p class="slds-p-horizontal_small">Instance Location : {instance.location}</p>
             <p class="slds-p-horizontal_small">Environment : {instance.environment}</p>
             <p class="slds-p-horizontal_small">Current Release : {instance.releaseVersion}</p>
-            <p class="slds-p-horizontal_small">Current Release # : {instance.releaseNumber}</p>
+            <p class="slds-p-horizontal_small">Current Release # : {instance.releaseNumber}</p-->
           </lightning-card>
         </div>
         <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12">
           <lightning-tabset variant="scoped">
-            <lightning-tab label="Products">
+            <!--lightning-tab label="Products">
               <c-trustproducts products={products}></c-trustproducts>
-            </lightning-tab>
+            </lightning-tab-->
             <lightning-tab label="Services">
-              <c-trustproducts products={services}></c-trustproducts>
+              <!--c-trustproducts products={services}></c-trustproducts-->
+              <c-trust-service services={services}></c-trust-service>
             </lightning-tab>
             <lightning-tab label="Maintenances">
               <c-trustmaintenance maintenances={maintenances}></c-trustmaintenance>

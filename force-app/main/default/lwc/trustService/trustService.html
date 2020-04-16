@@ -1,0 +1,24 @@
+<template>
+    <div class="slds-text-heading_small slds-m-bottom_small">
+        Current Status By Service
+    </div>
+    <!-- need to automate color scheme here-->
+    <div class="slds-p-around_medium bannerClass slds-m-bottom_small">
+        <span>OVERALL SYSTEM</span>
+        <span class="slds-float_right">
+            <lightning-icon icon-name="utility:success" size="small" variant="inverse"></lightning-icon>
+        </span>
+    </div>
+    <template if:true={services}>
+        <div class="slds-grid slds-wrap">       
+            <template for:each={services} for:item="service">
+                <div class="slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-m-bottom_x-small serviceDiv" key={service.name}>
+                    <div class="slds-p-around_small slds-text-title_caps serviceName">{service.name}</div>
+                    <div class="slds-p-around_small">
+                        <lightning-icon icon-name={service.status} variant={service.statusVariant} size="small"></lightning-icon>
+                    </div>
+                </div>
+            </template>                            
+        </div>
+    </template>
+</template>

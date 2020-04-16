@@ -3,6 +3,7 @@ import { LightningElement, api, track, wire } from "lwc";
 import retrieveOrgTrustStatus from "@salesforce/apex/OrgTrustController.retrieveOrgTrustStatus";
 import { CurrentPageReference } from 'lightning/navigation';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';
+import { getProductLabel, getServiceLabel, getServiceVariant, getStatusIcon } from "./truststatusutility";
 
 const QUERY_URL = "https://api.status.salesforce.com/v1/instanceAliases/";
 const STATUS = "/status";
@@ -23,9 +24,11 @@ class Service {
     this.order = order;
     this.isCore = isCore;
     // eslint-disable-next-line eqeqeq
-    this.status = status == "OK" ? "utility:success" : "utility:error";
+    //this.status = status == "OK" ? "utility:success" : "utility:error";
     // eslint-disable-next-line eqeqeq
-    this.statusVariant = status == "OK" ? "success" : "error";
+    //this.statusVariant = status == "OK" ? "success" : "error";
+    this.status = getStatusIcon(status);
+    this.statusVariant = getServiceVariant(status);
   }
 }
 
@@ -80,9 +83,11 @@ class Instance {
     this.releaseVersion = releaseVersion;
     this.releaseNumber = releaseNumber;
     // eslint-disable-next-line eqeqeq
-    this.status = status == "OK" ? "utility:success" : "utility:error";
+    //this.status = status == "OK" ? "utility:success" : "utility:error";
     // eslint-disable-next-line eqeqeq
-    this.statusVariant = status == "OK" ? "success" : "error";
+    //this.statusVariant = status == "OK" ? "success" : "error";
+    this.status = getStatusIcon(status);
+    this.statusVariant = getServiceVariant(status);
     this.isActive = isActive;
   }
 }
@@ -142,12 +147,6 @@ export default class Truststatus extends LightningElement {
   @track incidents = [];
   @track instance;
   @track error;
-
-  /*
-  connectedCallback() {
-    //  this.retrieveInstanceStatus();
-  }
-*/
 
   connectedCallback() {
     // subscribe to bearListUpdate event
@@ -264,7 +263,7 @@ export default class Truststatus extends LightningElement {
     // eslint-disable-next-line guard-for-in
     for (let pCnt in results.Products) {
       prod = results.Products[pCnt];
-      product = new Product(prod.key, prod.order, prod.isActive);
+      product = new Product(getProductLabel(prod.key), prod.order, prod.isActive);
       if (product) {
         productList.push(product);
       }
@@ -279,7 +278,7 @@ export default class Truststatus extends LightningElement {
     // eslint-disable-next-line guard-for-in
     for (let sCnt in results.Services) {
       serv = results.Services[sCnt];
-      service = new Service(serv.key, serv.order, serv.isCore, results.status);
+      service = new Service(getServiceLabel(serv.key), serv.order, serv.isCore, results.status);
       if (service) {
         serviceList.push(service);
       }
