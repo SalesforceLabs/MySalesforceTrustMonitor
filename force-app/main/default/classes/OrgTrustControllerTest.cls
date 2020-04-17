@@ -41,9 +41,11 @@ public class OrgTrustControllerTest {
     List<OrgTrustController.SFDCInstance> results = OrgTrustController.getInstanceList(
       'NA109'
     );
-    System.debug('results => ' + results);
-    //   OrgTrustController.SFDCInstance org = new OrgTrustController().SFDCInstance;
-    //  OrgTrustController.SFDCInstance instance = results[0];
-    System.assertEquals(results[0].key, 'NA109');
+    if(results != null && !results.isempty()){
+        System.debug('results => ' + results);
+        //   OrgTrustController.SFDCInstance org = new OrgTrustController().SFDCInstance;
+        //  OrgTrustController.SFDCInstance instance = results[0];
+        System.assertEquals(results[0].key, 'NA109');
+    }
   }
 }
