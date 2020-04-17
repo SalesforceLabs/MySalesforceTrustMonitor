@@ -11,7 +11,7 @@
     </types>
     <types>
         <members>trustmaintenance</members>
-        <members>trustproduct</members>
+        <members>trustproducts</members>
         <members>trustService</members>
         <members>truststatus</members>
         <members>trustIncidents</members>
