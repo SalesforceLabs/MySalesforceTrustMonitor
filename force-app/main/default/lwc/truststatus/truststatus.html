@@ -68,9 +68,11 @@
                 maintenances={maintenances}
               ></c-trustmaintenance>
             </lightning-tab>
-            <lightning-tab label="Incidents">
-              <c-trust-incidents incidents={incidents}></c-trust-incidents>
-            </lightning-tab>
+            <template if:true={incidentExists}>
+              <lightning-tab label="Incidents">
+                <c-trust-incidents incidents={incidents}></c-trust-incidents>
+              </lightning-tab>
+            </template>
           </lightning-tabset>
         </div>
       </div>

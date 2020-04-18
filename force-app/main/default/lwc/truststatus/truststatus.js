@@ -147,6 +147,8 @@ export default class Truststatus extends LightningElement {
   @track instance;
   @track error;
 
+  @track incidentExists = this.incidents.length > 0 ? true : false;
+
   connectedCallback() {
     this.keyType = "INSTANCE";
     // subscribe to bearListUpdate event
