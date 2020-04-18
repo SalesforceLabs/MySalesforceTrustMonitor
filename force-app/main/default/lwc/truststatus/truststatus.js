@@ -1,9 +1,16 @@
 /* eslint-disable no-console */
 import { LightningElement, api, track, wire } from "lwc";
 import retrieveOrgTrustStatus from "@salesforce/apex/OrgTrustController.retrieveOrgTrustStatus";
-import { CurrentPageReference } from 'lightning/navigation';
-import { registerListener, unregisterAllListeners } from 'c/pubsub';
-import { getProductLabel, getServiceLabel, getServiceVariant, getStatusIcon } from "./truststatusutility";
+import { CurrentPageReference } from "lightning/navigation";
+import { registerListener, unregisterAllListeners } from "c/pubsub";
+import {
+  getProductLabel,
+  getServiceLabel,
+  getServiceVariant,
+  getStatusIcon
+} from "./truststatusutility";
+
+import getCurrentOrg from "@salesforce/apex/OrgTrustController.getCurrentOrg";
 
 const QUERY_URL = "https://api.status.salesforce.com/v1/instanceAliases/";
 const STATUS = "/status";
@@ -23,10 +30,6 @@ class Service {
     this.name = name;
     this.order = order;
     this.isCore = isCore;
-    // eslint-disable-next-line eqeqeq
-    //this.status = status == "OK" ? "utility:success" : "utility:error";
-    // eslint-disable-next-line eqeqeq
-    //this.statusVariant = status == "OK" ? "success" : "error";
     this.status = getStatusIcon(status);
     this.statusVariant = getServiceVariant(status);
   }
@@ -82,10 +85,6 @@ class Instance {
     this.environment = environment;
     this.releaseVersion = releaseVersion;
     this.releaseNumber = releaseNumber;
-    // eslint-disable-next-line eqeqeq
-    //this.status = status == "OK" ? "utility:success" : "utility:error";
-    // eslint-disable-next-line eqeqeq
-    //this.statusVariant = status == "OK" ? "success" : "error";
     this.status = getStatusIcon(status);
     this.statusVariant = getServiceVariant(status);
     this.isActive = isActive;
@@ -113,7 +112,7 @@ class Maintenance {
 }
 
 export default class Truststatus extends LightningElement {
-  maintenanceCols = [
+  /*maintenanceCols = [
     {
       label: "Name",
       fieldName: "name",
@@ -132,16 +131,16 @@ export default class Truststatus extends LightningElement {
       fieldName: "plannedEndTime"
     }
   ];
+  */
 
-  @wire(CurrentPageReference) pageRef;   
-  @api instanceKey = "CS115";
-  @api keyType = "INSTANCE";
+  @wire(CurrentPageReference) pageRef;
+  @api instanceKey;
+  @api keyType;
   @track instanceStatus;
   @track instanceStatusString;
   @track accountId;
   @track maintenances = [];
   @track instanceInfo = {};
-
   @track products = [];
   @track services = [];
   @track incidents = [];
@@ -149,8 +148,9 @@ export default class Truststatus extends LightningElement {
   @track error;
 
   connectedCallback() {
+    this.keyType = "INSTANCE";
     // subscribe to bearListUpdate event
-    registerListener('getStatus', this.handleGetStatus, this);
+    registerListener("getStatus", this.handleGetStatus, this);
   }
 
   disconnectedCallback() {
@@ -167,6 +167,15 @@ export default class Truststatus extends LightningElement {
 
     this.instanceKey = eventData.instanceKey;
     this.keyType = eventData.keyType;
+  }
+
+  @wire(getCurrentOrg, {})
+  wiredGetCurrentOrg({ error, data }) {
+    if (data) {
+      this.instanceKey = data;
+    } else if (error) {
+      this.error = error;
+    }
   }
 
   @wire(retrieveOrgTrustStatus, {
@@ -217,7 +226,6 @@ export default class Truststatus extends LightningElement {
   }
 
   processMaintenances(results) {
-    // alert("Process" + results.Maintenances.length);
     let maintenanceList = [];
     let mRes;
     // eslint-disable-next-line guard-for-in
@@ -234,15 +242,9 @@ export default class Truststatus extends LightningElement {
           mRes.serviceKeys
         )
       );
-      /*  {
-        id: mRes.id.toString(),
-        name: mRes.name,
-        plannedStartTime: mRes.plannedStartTime,
-        plannedEndTime: mRes.plannedEndTime
-      });*/
     }
     this.maintenances = this.maintenances.concat(maintenanceList);
-    console.debug("maintenances" + JSON.stringify(this.maintenances));
+    //  console.debug("maintenances" + JSON.stringify(this.maintenances));
   }
   processInstanceInfo(results) {
     this.instance = new Instance(
@@ -263,7 +265,11 @@ export default class Truststatus extends LightningElement {
     // eslint-disable-next-line guard-for-in
     for (let pCnt in results.Products) {
       prod = results.Products[pCnt];
-      product = new Product(getProductLabel(prod.key), prod.order, prod.isActive);
+      product = new Product(
+        getProductLabel(prod.key),
+        prod.order,
+        prod.isActive
+      );
       if (product) {
         productList.push(product);
       }
@@ -278,7 +284,12 @@ export default class Truststatus extends LightningElement {
     // eslint-disable-next-line guard-for-in
     for (let sCnt in results.Services) {
       serv = results.Services[sCnt];
-      service = new Service(getServiceLabel(serv.key), serv.order, serv.isCore, results.status);
+      service = new Service(
+        getServiceLabel(serv.key),
+        serv.order,
+        serv.isCore,
+        results.status
+      );
       if (service) {
         serviceList.push(service);
       }

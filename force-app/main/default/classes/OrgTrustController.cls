@@ -1,5 +1,4 @@
 public with sharing class OrgTrustController {
-
   private enum OrgKeyType {
     DOMAIN,
     INSTANCE,
@@ -14,8 +13,10 @@ public with sharing class OrgTrustController {
   public static final String CHILD_PRODUCTS_SERVICE = '?childProducts=true';
 
   @AuraEnabled(cacheable=true)
-  public static map<String, Object> retrieveOrgTrustStatus(String instanceKey,String keyType) {
-
+  public static map<String, Object> retrieveOrgTrustStatus(
+    String instanceKey,
+    String keyType
+  ) {
     Map<String, Object> mapResults = new Map<String, Object>();
 
     System.debug('KeyType => ' + keyType + ' InstanceKey => ' + instanceKey);
@@ -24,12 +25,22 @@ public with sharing class OrgTrustController {
     HttpRequest request = new HttpRequest();
     request.setMethod('GET');
     if (OrgKeyType.DOMAIN.name().equals(keyType)) {
-      request.setEndpoint('callout:SFDC_TRUST/'+DOMAIN_ENDPOINT+instanceKey+STATUS_SERVICE);
+      request.setEndpoint(
+        'callout:SFDC_TRUST/' +
+        DOMAIN_ENDPOINT +
+        instanceKey +
+        STATUS_SERVICE
+      );
+    } else if (OrgKeyType.INSTANCE.name().equals(keyType)) {
+      request.setEndpoint(
+        'callout:SFDC_TRUST/' +
+        INSTANCE_ENDPOINT +
+        instanceKey +
+        STATUS_SERVICE +
+        CHILD_PRODUCTS_SERVICE
+      );
     }
-    else if (OrgKeyType.INSTANCE.name().equals(keyType))  {
-      request.setEndpoint('callout:SFDC_TRUST/'+INSTANCE_ENDPOINT+instanceKey+STATUS_SERVICE+CHILD_PRODUCTS_SERVICE);
-    }
-    
+
     String results;
     HttpResponse response = http.send(request);
     if (response.getStatusCode() == 200) {
@@ -44,44 +55,72 @@ public with sharing class OrgTrustController {
   }
 
   @AuraEnabled(cacheable=true)
-  public static List<SFDCInstance> getInstanceList(String inputString)    {
-      List<SFDCInstance> instances = new List<SFDCInstance>();
-      HttpRequest httpRequest = new HttpRequest();
-      httpRequest.setEndpoint('callout:SFDC_TRUST/'+SEARCH_INSTANCE_SERVICE+inputString);
-      httpRequest.setMethod('GET');
+  public static List<SFDCInstance> getInstanceList(String inputString) {
+    List<SFDCInstance> instances = new List<SFDCInstance>();
+    HttpRequest httpRequest = new HttpRequest();
+    httpRequest.setEndpoint(
+      'callout:SFDC_TRUST/' +
+      SEARCH_INSTANCE_SERVICE +
+      inputString
+    );
+    httpRequest.setMethod('GET');
 
-      Http http = new Http();
-      try{
-          HTTPResponse httpResponse = http.send(httpRequest);
-          instances = (List<SFDCInstance>)JSON.deserialize(httpResponse.getBody(),List<SFDCInstance>.class);
-          if (!instances.isEmpty()){
-              Integer idCtr = 0;
-              for (SFDCInstance sfdcInstance : instances)  {
-                  sfdcInstance.id = idCtr++ ;
-              }
-          }
-          return instances;
+    Http http = new Http();
+    try {
+      HTTPResponse httpResponse = http.send(httpRequest);
+      instances = (List<SFDCInstance>) JSON.deserialize(
+        httpResponse.getBody(),
+        List<SFDCInstance>.class
+      );
+      if (!instances.isEmpty()) {
+        Integer idCtr = 0;
+        for (SFDCInstance sfdcInstance : instances) {
+          sfdcInstance.id = idCtr++;
+        }
       }
-      catch(Exception e){
-          return null;
-      }       
+      return instances;
+    } catch (Exception e) {
+      return null;
+    }
   }
 
-  public class SFDCInstance{
-        
-    @AuraEnabled public Integer id;
+  @AuraEnabled(cacheable=true)
+  public static String getCurrentOrg() {
+    String name;
+    try {
+      name = [SELECT InstanceName FROM Organization].instanceName;
+    } catch (Exception e) {
+      System.debug(
+        'Exception occured while retrieving Organization information'
+      );
+      return '';
+    }
+    return name;
+  }
+
+  public class SFDCInstance {
+    @AuraEnabled
+    public Integer id;
 
     //instance field
-    @AuraEnabled public String key;
-    @AuraEnabled public String location;
-    @AuraEnabled public String environment;
-    @AuraEnabled public Boolean isActive;
-    @AuraEnabled public String type;
+    @AuraEnabled
+    public String key;
+    @AuraEnabled
+    public String location;
+    @AuraEnabled
+    public String environment;
+    @AuraEnabled
+    public Boolean isActive;
+    @AuraEnabled
+    public String type;
 
     //domain fields
-    @AuraEnabled public String alias;
-    @AuraEnabled public String instanceKey;
+    @AuraEnabled
+    public String alias;
+    @AuraEnabled
+    public String instanceKey;
     //@AuraEnabled public String type;
-    @AuraEnabled public String aliasType;
+    @AuraEnabled
+    public String aliasType;
   }
 }

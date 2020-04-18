@@ -3,12 +3,23 @@
   <template if:true={instance}>
     <div class="app slds-p-around_x-large slds-grid_align-center slds-gutters">
       <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 instanceBox">
-          <lightning-card  variant="Narrow">          
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 instanceBox"
+        >
+          <lightning-card variant="Narrow">
             <h3 slot="title">
-              <lightning-icon icon-name="standard:orders" size="small" class="slds-m-right_small"></lightning-icon>
+              <lightning-icon
+                icon-name="standard:orders"
+                size="small"
+                class="slds-m-right_small"
+              ></lightning-icon>
               <span>{instance.name}</span>
-              <lightning-icon icon-name={instance.status} variant={instance.statusVariant} size="small" class="slds-float_right"></lightning-icon>
+              <lightning-icon
+                icon-name={instance.status}
+                variant={instance.statusVariant}
+                size="small"
+                class="slds-float_right"
+              ></lightning-icon>
             </h3>
             <div class="slds-m-around_small">
               <div class="slds-text-color_weak">Region :</div>
@@ -38,17 +49,24 @@
             <p class="slds-p-horizontal_small">Current Release # : {instance.releaseNumber}</p-->
           </lightning-card>
         </div>
-        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12">
+        <div
+          class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12"
+        >
           <lightning-tabset variant="scoped">
             <!--lightning-tab label="Products">
               <c-trustproducts products={products}></c-trustproducts>
             </lightning-tab-->
             <lightning-tab label="Services">
               <!--c-trustproducts products={services}></c-trustproducts-->
-              <c-trust-service services={services} instance={instance}></c-trust-service>
+              <c-trust-service
+                services={services}
+                instance={instance}
+              ></c-trust-service>
             </lightning-tab>
             <lightning-tab label="Maintenances">
-              <c-trustmaintenance maintenances={maintenances}></c-trustmaintenance>
+              <c-trustmaintenance
+                maintenances={maintenances}
+              ></c-trustmaintenance>
             </lightning-tab>
             <lightning-tab label="Incidents">
               <c-trust-incidents incidents={incidents}></c-trust-incidents>
