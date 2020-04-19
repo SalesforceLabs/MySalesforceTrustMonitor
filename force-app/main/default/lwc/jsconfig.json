@@ -26,6 +26,9 @@
             ],
             "c/truststatus": [
                 "truststatus/truststatus.js"
+            ],
+            "c/favoriteInstances": [
+                "favoriteInstances/favoriteInstances.js"
             ]
         }
     },
