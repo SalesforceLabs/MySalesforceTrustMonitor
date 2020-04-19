@@ -9,8 +9,10 @@
 }
 .serviceDiv{
     border: 1px solid #D8DDE6;
+    height: 115px;
 }
 .serviceName{
     border-bottom: 1px solid #D8DDE6;
     background-color: #F4F6F9;
+    height: 50px;
 }
