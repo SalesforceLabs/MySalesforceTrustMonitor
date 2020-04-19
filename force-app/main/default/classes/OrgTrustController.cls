@@ -98,6 +98,26 @@ public with sharing class OrgTrustController {
     return name;
   }
 
+  @AuraEnabled(cacheable=true)
+  public static List<SFInstance__c> getFavoriteInstances() {
+    List<SFInstance__c> instances;
+    try {
+      String userId = UserInfo.getUserId();
+      instances = [
+        SELECT Id, Name, Instance_Key_Type__c, alias__c, OwnerId
+        FROM SFInstance__c
+        WHERE OwnerId = :userId
+      ];
+      System.debug('Instances => ' + instances);
+    } catch (Exception e) {
+      System.debug(
+        'Exception occured while retrieving records from SFInstance__c'
+      );
+      throw e;
+    }
+    return instances;
+  }
+
   public class SFDCInstance {
     @AuraEnabled
     public Integer id;

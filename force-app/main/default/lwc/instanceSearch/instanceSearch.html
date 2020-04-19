@@ -1,116 +1,153 @@
 <template>
-    <div class="app slds-p-around_x-large slds-grid_align-center">
-        
-        <div>
-            <div class="slds-align_absolute-center slds-m-top_small">
-                <h1 class="slds-text-heading_large"><b>{title}</b></h1>
-            </div>
+  <div class="app slds-p-around_x-large slds-grid_align-center">
+    <div>
+      <div class="slds-align_absolute-center slds-m-top_small">
+        <h1 class="slds-text-heading_large"><b>{title}</b></h1>
+      </div>
 
-            <div class="slds-form__row slds-align_absolute-center">
-                <div class="slds-form-element">
-                    <div class="slds-form-element__control slds-m-top_large" onkeyup={handleKeyUp}>
-                        <lightning-input class="searchBox" type="search" placeholder="Search Instance, Domain, POD, or MID" value={inputString} onchange={handleKeyChange}>                           
-                        </lightning-input>                       
-                    </div>
-                </div>
-                <div class="slds-form-element">   
-                    <div class="slds-form-element__control slds-m-top_xx-large">
-                        <!--lightning-button-icon class="slds-m-bottom_none" icon-name="standard:search" alternative-text="Search" variant="brand" title="Search" onclick={handleSearch} size="medium">                       
-                        </lightning-button-icon-->
-                        <lightning-button variant="brand" class="slds-m-bottom_none" label="Search" title="Search" icon-name="standard:search" onclick={handleSearch}>                
-                        </lightning-button>
-                    </div>                                  
-                </div>           
-            </div>
+      <div class="slds-form__row slds-align_absolute-center">
+        <div class="slds-form-element">
+          <div
+            class="slds-form-element__control slds-m-top_large"
+            onkeyup={handleKeyUp}
+          >
+            <lightning-input
+              class="searchBox"
+              type="search"
+              placeholder="Search Instance, Domain, POD, or MID"
+              value={inputString}
+              onchange={handleKeyChange}
+            >
+            </lightning-input>
+          </div>
         </div>
-        <div class="slds-m-top_medium">            
-            <div class="resultBox">
-                <template if:true={sfdcinstances}>
-                        <!-- Total Count -->
-                        <div class="slds-grid">
-                            <div class="slds-m-right_medium">
-                                <lightning-icon icon-name="standard:search" alternative-text="Search Results" size="large" title="Search Results">
-                                </lightning-icon>
-                            </div>
-                            <div>
-                                <div>
-                                    <h2 class="slds-text-heading_medium"><b>Search Results</b></h2>
-                                </div>
-                                <div>
-                                    {sfdcinstances.length} item
-                                </div>
-                            </div>
-                        </div>
-                </template>
-                <template if:true={instances}>
-                    <div class="slds-grid slds-m-top_x-large">
-                        <div class="slds-m-right_medium">
-                            <lightning-icon icon-name="standard:orders" alternative-text="Results" size="large" title="Results">
-                            </lightning-icon>
-                        </div>
-                        <div>
-                            <div>
-                                <h2 class="slds-text-heading_medium">Instances</h2>
-                            </div>
-                            <div>
-                                {instances.length} item
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slds-grid cardsLayout">
-                        <template for:each={instances} for:item="instance">
-                            <span key={instance.id}>
-                                <c-instance-search-result-tile 
-                                    keyx={instance.keyx} 
-                                    location={instance.location} 
-                                    environment={instance.environment} 
-                                    is-active={instance.isActive} 
-                                    type={instance.type}
-                                    alias={instance.alias}
-                                    instance-key={instance.instanceKey}
-                                    alias-type={instance.aliasType}
-                                    is-instance={instance.isInstance}
-                                >
-                                </c-instance-search-result-tile>
-                            </span>                       
-                        </template>
-                    </div>
-                </template>
-                <template if:true={domains}>
-                    <div class="slds-grid slds-m-top_x-large">
-                        <div class="slds-m-right_medium">
-                            <lightning-icon icon-name="standard:orders" alternative-text="Results" size="large" title="Results">
-                            </lightning-icon>
-                        </div>
-                        <div>
-                            <div>
-                                <h2 class="slds-text-heading_medium">My Domains</h2>
-                            </div>
-                            <div>
-                                {domains.length} item
-                            </div>
-                        </div>                       
-                    </div>
-                    <div class="slds-grid cardsLayout">
-                        <template for:each={domains} for:item="domain">
-                            <span key={domain.id}>
-                                <c-instance-search-result-tile 
-                                    keyx={domain.keyx} 
-                                    location={domain.location} 
-                                    environment={domain.environment} 
-                                    is-active={domain.isActive} 
-                                    type={domain.type}
-                                    alias={domain.alias}
-                                    instance-key={domain.instanceKey}
-                                    alias-type={domain.aliasType}
-                                    is-instance={domain.isInstance}
-                                >
-                                </c-instance-search-result-tile>
-                            </span>
-                        </template>
-                    </div>
-                </template>
-            </div>
-        </div>       
+        <div class="slds-form-element">
+          <div class="slds-form-element__control slds-m-top_xx-large">
+            <!--lightning-button-icon class="slds-m-bottom_none" icon-name="standard:search" alternative-text="Search" variant="brand" title="Search" onclick={handleSearch} size="medium">                       
+                        </lightning-button-icon-->
+            <lightning-button
+              variant="brand"
+              class="slds-m-bottom_none"
+              label="Search"
+              title="Search"
+              icon-name="standard:search"
+              onclick={handleSearch}
+            >
+            </lightning-button>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- Display list of favorite instances : Start-->
+    <div class="app slds-p-around_x-large slds-grid_align-center">
+      <div class="slds-form__row slds-align_absolute-center">
+        <c-favorite-instances></c-favorite-instances>
+      </div>
+    </div>
+    <!-- Display list of favorite instances : End-->
+    <div class="slds-m-top_medium">
+      <div class="resultBox">
+        <template if:true={sfdcinstances}>
+          <!-- Total Count -->
+          <div class="slds-grid">
+            <div class="slds-m-right_medium">
+              <lightning-icon
+                icon-name="standard:search"
+                alternative-text="Search Results"
+                size="large"
+                title="Search Results"
+              >
+              </lightning-icon>
+            </div>
+            <div>
+              <div>
+                <h2 class="slds-text-heading_medium"><b>Search Results</b></h2>
+              </div>
+              <div>
+                {sfdcinstances.length} item
+              </div>
+            </div>
+          </div>
+        </template>
+        <template if:true={instances}>
+          <div class="slds-grid slds-m-top_x-large">
+            <div class="slds-m-right_medium">
+              <lightning-icon
+                icon-name="standard:orders"
+                alternative-text="Results"
+                size="large"
+                title="Results"
+              >
+              </lightning-icon>
+            </div>
+            <div>
+              <div>
+                <h2 class="slds-text-heading_medium">Instances</h2>
+              </div>
+              <div>
+                {instances.length} item
+              </div>
+            </div>
+          </div>
+          <div class="slds-grid cardsLayout">
+            <template for:each={instances} for:item="instance">
+              <span key={instance.id}>
+                <c-instance-search-result-tile
+                  keyx={instance.keyx}
+                  location={instance.location}
+                  environment={instance.environment}
+                  is-active={instance.isActive}
+                  type={instance.type}
+                  alias={instance.alias}
+                  instance-key={instance.instanceKey}
+                  alias-type={instance.aliasType}
+                  is-instance={instance.isInstance}
+                >
+                </c-instance-search-result-tile>
+              </span>
+            </template>
+          </div>
+        </template>
+        <template if:true={domains}>
+          <div class="slds-grid slds-m-top_x-large">
+            <div class="slds-m-right_medium">
+              <lightning-icon
+                icon-name="standard:orders"
+                alternative-text="Results"
+                size="large"
+                title="Results"
+              >
+              </lightning-icon>
+            </div>
+            <div>
+              <div>
+                <h2 class="slds-text-heading_medium">My Domains</h2>
+              </div>
+              <div>
+                {domains.length} item
+              </div>
+            </div>
+          </div>
+          <div class="slds-grid cardsLayout">
+            <template for:each={domains} for:item="domain">
+              <span key={domain.id}>
+                <c-instance-search-result-tile
+                  keyx={domain.keyx}
+                  location={domain.location}
+                  environment={domain.environment}
+                  is-active={domain.isActive}
+                  type={domain.type}
+                  alias={domain.alias}
+                  instance-key={domain.instanceKey}
+                  alias-type={domain.aliasType}
+                  is-instance={domain.isInstance}
+                >
+                </c-instance-search-result-tile>
+              </span>
+            </template>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
 </template>
