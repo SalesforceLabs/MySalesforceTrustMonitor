@@ -97,6 +97,9 @@ export default class InstanceSearch extends LightningElement {
                     instance.isActive = item.isActive;
                     instance.type = item.type;
                     instance.isInstance = true;
+                    if (typeof item.sfId !== "undefined"){
+                        instance.sfId = item.sfId;
+                    }
                     instanceArray.push(instance);
                 }
                 else{
@@ -107,6 +110,9 @@ export default class InstanceSearch extends LightningElement {
                     domain.type = item.type;
                     domain.aliasType = item.aliasType;
                     domain.isInstance = false;
+                    if (typeof item.sfId !== "undefined"){
+                        domain.sfId = item.sfId;
+                    }
                     domainArray.push(domain);
                 }
             });

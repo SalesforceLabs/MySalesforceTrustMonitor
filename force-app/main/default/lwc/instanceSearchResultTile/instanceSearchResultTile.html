@@ -6,7 +6,12 @@
                     <lightning-card class="cardSize"  variant="Narrow"  title={cardTitle} icon-name="standard:orders">
                         <lightning-button-group slot="actions">
                             <lightning-button-icon class="actionButtons" icon-name="utility:download"  size="small" variant="brand" alternative-text="Get Status" data-instancekey={keyx} data-keytype="INSTANCE" onclick={getStatus}></lightning-button-icon>
-                            <lightning-button-icon class="actionButtons" icon-name="utility:favorite"  size="small" variant="brand" alternative-text="Mark as Favorite" data-instancekey={keyx} data-keytype="INSTANCE" onclick={saveFavorite}></lightning-button-icon>
+                            <template if:false={isFavorite}>
+                                <lightning-button-icon class="actionButtons" icon-name="utility:favorite"  size="small" variant="brand" alternative-text="Mark as Favorite" data-instancekey={keyx} data-keytype="INSTANCE" onclick={saveFavorite}></lightning-button-icon>
+                            </template>   
+                            <template if:true={isFavorite}>
+                                <lightning-button-icon class="actionButtons" icon-name="action:delete"  size="small" variant="brand" alternative-text="Remove Favorite" data-instancekey={keyx} data-keytype="INSTANCE" data-sfid={sfId} onclick={removeFavorite}></lightning-button-icon>
+                            </template>                        
                         </lightning-button-group>
                         <!--p class="slds-p-horizontal_small">
                             {keyx} , {location} , {environment} , {isActive} , {type}>
@@ -17,7 +22,12 @@
                     <lightning-card class="cardSize" variant="Narrow"  title={cardTitle} icon-name="standard:orders">
                         <lightning-button-group slot="actions">
                             <lightning-button-icon class="actionButtons" icon-name="utility:download"  size="small" variant="brand" alternative-text="Get Status" data-instancekey={alias} data-keytype="DOMAIN" onclick={getStatus}></lightning-button-icon>
-                            <lightning-button-icon class="actionButtons" icon-name="utility:favorite"  size="small" variant="brand" alternative-text="Mark as Favorite" data-instancekey={instanceKey} data-keytype="DOMAIN" data-alias={alias} onclick={saveFavorite}></lightning-button-icon>
+                            <template if:false={isFavorite}>
+                                <lightning-button-icon class="actionButtons" icon-name="utility:favorite"  size="small" variant="brand" alternative-text="Mark as Favorite" data-instancekey={instanceKey} data-keytype="DOMAIN" data-alias={alias} onclick={saveFavorite}></lightning-button-icon>
+                            </template>   
+                            <template if:true={isFavorite}>
+                                <lightning-button-icon class="actionButtons" icon-name="action:delete"  size="small" variant="brand" alternative-text="Remove Favorite" data-instancekey={instanceKey} data-keytype="DOMAIN" data-alias={alias} data-sfid={sfId} onclick={removeFavorite}></lightning-button-icon>
+                            </template>                        
                         </lightning-button-group>
                         <!--p class="slds-p-horizontal_small">
                             {type} , {alias} , {instanceKey} , {aliasType}>

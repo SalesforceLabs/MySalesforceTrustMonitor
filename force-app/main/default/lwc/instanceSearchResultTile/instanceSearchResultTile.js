@@ -1,6 +1,7 @@
 import { LightningElement, api, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { createRecord } from 'lightning/uiRecordApi';
+import { deleteRecord } from 'lightning/uiRecordApi';
 import { reduceErrors } from 'c/ldsUtils';
 import SFINSTANCE_OBJECT from '@salesforce/schema/SFInstance__c';
 import NAME_FIELD from '@salesforce/schema/SFInstance__c.Name';
@@ -21,17 +22,21 @@ export default class InstanceSearchResultTile extends LightningElement {
     @api instanceKey;
     @api aliasType;
     @api isInstance;
+    @api sfId;
     sfInstance__cId;
 
     @wire(CurrentPageReference) pageRef;
 
-    get cardTitle(){
-        /*if(typeof aliasType === "undefined"){
-            return this.keyx;
+    get isFavorite(){
+        if(typeof this.sfId === "undefined"){
+            return false
         }
         else{
-            return (this.alias +' | ' + this.instanceKey);
-        }*/
+            return true;
+        }
+    }
+
+    get cardTitle(){
         if (this.isInstance)   {
             return this.keyx;
         }
@@ -49,6 +54,31 @@ export default class InstanceSearchResultTile extends LightningElement {
         fireEvent(this.pageRef,'getStatus',eventData);
     }
 
+    removeFavorite(event){
+        event.preventDefault();
+        const recordId = event.target.dataset.sfid;
+        deleteRecord(recordId)
+        .then(()=>{
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Favorite Removed !',
+                    variant: 'success'
+                })
+            );
+            //return refreshApex(this.wiredAccountsResult);
+        })
+        .catch((error) => {
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error removing favorite !',
+                    message: reduceErrors(error).join(', '),
+                    variant: 'error'
+                })
+            );
+        });
+    }
+
     saveFavorite(event){
         event.preventDefault();
         const fields = {};
@@ -58,24 +88,24 @@ export default class InstanceSearchResultTile extends LightningElement {
         fields[ALIAS__c_FIELD.fieldApiName] = event.target.dataset.alias;         
         const recordInput = { apiName: SFINSTANCE_OBJECT.objectApiName, fields };
         createRecord(recordInput)
-            .then((SFInstance__c) => {
-                this.sfInstance__cId = SFInstance__c.id;
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Success',
-                        message: 'Marked as Favorite !',
-                        variant: 'success'
-                    })
-                );
-            })
-            .catch((error) => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error',
-                        message: 'Instance key already exists !',
-                        variant: 'error'
-                    })
-                );
-            });
+        .then((SFInstance__c) => {
+            this.sfInstance__cId = SFInstance__c.id;
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Marked as Favorite !',
+                    variant: 'success'
+                })
+            );
+        })
+        .catch((error) => {
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Error',
+                    message: 'Instance key already exists !',
+                    variant: 'error'
+                })
+            );
+        });
     }
 }
