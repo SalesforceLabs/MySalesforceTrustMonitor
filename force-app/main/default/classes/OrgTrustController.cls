@@ -85,6 +85,33 @@ public with sharing class OrgTrustController {
   }
 
   @AuraEnabled(cacheable=true)
+  public static List<SFDCInstance> getFavoritesList(){
+    List<SFInstance__c> sfInstances = new List<SFInstance__c>();
+    List<SFDCInstance> instances = new List<SFDCInstance>();
+    sfInstances = [SELECT Id, Name, Instance_Key_Type__c, Alias__c, OwnerId FROM SFInstance__c
+                  WHERE OwnerId=: UserInfo.getUserId()];
+    if (!sfInstances.isEmpty()) {
+      for (SFInstance__c sfInstance: sfInstances)  {
+        SFDCInstance instance = new SFDCInstance();
+        if (sfInstance.Alias__c !=null ) {
+          instance.instanceKey = sfInstance.Name;
+          instance.alias = sfInstance.Alias__c;
+          instance.aliasType = 'domain';
+        }
+        else{
+          instance.key = sfInstance.Name;
+        }
+        instance.sfId = sfInstance.Id;
+        instances.add(instance);
+      }
+      return instances;
+    }
+    else{
+      return null;
+    }
+  }
+
+  @AuraEnabled(cacheable=true)
   public static String getCurrentOrg() {
     String name;
     try {
@@ -98,29 +125,11 @@ public with sharing class OrgTrustController {
     return name;
   }
 
-  @AuraEnabled(cacheable=true)
-  public static List<SFInstance__c> getFavoriteInstances() {
-    List<SFInstance__c> instances;
-    try {
-      String userId = UserInfo.getUserId();
-      instances = [
-        SELECT Id, Name, Instance_Key_Type__c, alias__c, OwnerId
-        FROM SFInstance__c
-        WHERE OwnerId = :userId
-      ];
-      System.debug('Instances => ' + instances);
-    } catch (Exception e) {
-      System.debug(
-        'Exception occured while retrieving records from SFInstance__c'
-      );
-      throw e;
-    }
-    return instances;
-  }
-
   public class SFDCInstance {
     @AuraEnabled
     public Integer id;
+    @AuraEnabled
+    public String sfId;
 
     //instance field
     @AuraEnabled
