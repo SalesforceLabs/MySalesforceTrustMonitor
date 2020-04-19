@@ -156,7 +156,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>SFInstance</label>
     <nameField>
-        <label>InstanceKey</label>
+        <label>Instance Key</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>

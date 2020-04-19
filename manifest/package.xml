@@ -5,6 +5,10 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>SFInstance__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
         <members>OrgTrustController</members>
         <members>OrgTrustControllerTest</members>
         <name>ApexClass</name>
@@ -18,13 +22,22 @@
         <members>instanceSearch</members>
         <members>instanceSearchResultTile</members>
         <members>pubsub</members>
+        <members>ldsUtils</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
         <members>SFDC_TRUST</members>
         <name>NamedCredential</name>
     </types>
-        <types>
+    <types>
+        <members>SFInstance__c.SF_Instance_Duplicate_Rule</members>
+        <name>DuplicateRule</name>
+    </types>
+    <types>
+        <members>SFInstance__c.SFInstance_Matching_Rule</members>
+        <name>MatchingRule</name>
+    </types>
+    <types>
         <members>OrgTrustStaticMockResponse</members>
         <members>OrgTrustInstancesStaticMockResponse</members>
         <name>StaticResource</name>
