@@ -6,6 +6,7 @@
     </types>
     <types>
         <members>SFInstance__c</members>
+        <members>OrgTrustHealth</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -42,5 +43,13 @@
         <members>OrgTrustInstancesStaticMockResponse</members>
         <name>StaticResource</name>
     </types>
+    <types>
+        <members>OrgTrustHealth</members>
+        <name>CustomApplication</name>
+    </types>   
+    <types>
+        <members>OrgTrustHealth</members>
+        <name>FlexiPage</name>
+    </types> 
     <version>48.0</version>
 </Package>
