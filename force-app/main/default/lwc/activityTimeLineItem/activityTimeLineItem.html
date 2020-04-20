@@ -1,0 +1,61 @@
+<template>
+    <li class="slds-timeline__actions_inline slds-is-relative">
+        <div class="slds-timeline__item_expandable slds-timeline__item_event">
+            <span class="slds-assistive-text">Event</span>
+            <div class="slds-media">
+            <div class="slds-media__figure">
+                <lightning-button-icon if:false={expanded} size="x-small" icon-name="utility:chevronright"
+                            alternative-text="Toggle details" onclick={toggleDetailSection}>
+                </lightning-button-icon>
+                <lightning-button-icon if:true={expanded} size="x-small" icon-name="utility:switch"
+                    alternative-text="Toggle details" onclick={toggleDetailSection}>
+                </lightning-button-icon>
+                <lightning-icon size="small" icon-name=standard:event></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
+                    <div class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
+                        <h3 class="slds-truncate" title={maintenance.name}>
+                            <a href="javascript:void(0);">
+                                <strong>{maintenance.name}</strong>
+                            </a>
+                        </h3>
+                    </div>
+                    <div class="slds-timeline__actions slds-timeline__actions_inline">
+                        <p class="slds-timeline__date">
+                            <lightning-formatted-date-time value={maintenance.plannedStartTime} year="numeric" month="short" day="2-digit" hour="numeric"
+                                       weekday="long" time-zone-name="short"></lightning-formatted-date-time>
+                        </p>                       
+                    </div>
+                </div>
+                <div if:true={expanded} class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
+                    <lightning-card  variant="Narrow">
+                        <p class="slds-p-horizontal_small">
+                            <span class="slds-text-color_weak">Id : </span>
+                            <span>{maintenance.id}</span>
+                        </p>  
+                        <p class="slds-p-horizontal_small">
+                            <span class="slds-text-color_weak">Type : </span>
+                            <span>{maintenance.type}</span>
+                        </p>
+                        <p class="slds-p-horizontal_small">
+                            <span class="slds-text-color_weak">Planned Start Time : </span>
+                            <span>
+                                <lightning-formatted-date-time value={maintenance.plannedStartTime} year="numeric" month="short" day="2-digit" hour="numeric"
+                                weekday="long" time-zone-name="short"></lightning-formatted-date-time>
+                            </span>
+                        </p>
+                        <p class="slds-p-horizontal_small">
+                            <span class="slds-text-color_weak">Planned End Time : </span>
+                            <span>
+                                <lightning-formatted-date-time value={maintenance.plannedEndTime} year="numeric" month="short" day="2-digit" hour="numeric"
+                                weekday="long" time-zone-name="short"></lightning-formatted-date-time>
+                            </span>
+                        </p>                          
+                    </lightning-card>
+                </div>
+            </div>
+            </div> 
+        </div>
+    </li>
+</template>

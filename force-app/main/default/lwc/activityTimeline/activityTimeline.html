@@ -1,0 +1,7 @@
+<template>          
+	<ul class="slds-timeline">
+        <template for:each={maintenances} for:item="maintenance">
+            <c-activity-time-line-item key={maintenance.id} maintenance={maintenance}></c-activity-time-line-item>
+        </template>       
+    </ul>
+</template>

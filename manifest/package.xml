@@ -24,6 +24,8 @@
         <members>instanceSearchResultTile</members>
         <members>pubsub</members>
         <members>ldsUtils</members>
+        <members>activityTimeline</members>
+        <members>activityTimelineItem</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
