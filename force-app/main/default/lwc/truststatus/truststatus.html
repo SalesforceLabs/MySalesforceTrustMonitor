@@ -4,7 +4,7 @@
     <div class="app slds-p-around_x-large slds-grid_align-center slds-gutters">
       <div class="slds-grid slds-wrap">
         <div
-          class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 instanceBox"
+          class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 instanceBox slds-m-bottom_small"
         >
           <lightning-card variant="Narrow">
             <h3 slot="title">
@@ -50,7 +50,7 @@
           </lightning-card>
         </div>
         <div
-          class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12"
+          class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12 slds-m-bottom_small"
         >
           <lightning-tabset variant="scoped">
             <!--lightning-tab label="Products">
@@ -68,11 +68,11 @@
                 maintenances={maintenances}
               ></c-trustmaintenance>
             </lightning-tab>
-            <template if:true={incidentExists}>
+            <!--template if:true={incidentExists}-->
               <lightning-tab label="Incidents">
                 <c-trust-incidents incidents={incidents}></c-trust-incidents>
               </lightning-tab>
-            </template>
+            <!--/template-->
           </lightning-tabset>
         </div>
       </div>

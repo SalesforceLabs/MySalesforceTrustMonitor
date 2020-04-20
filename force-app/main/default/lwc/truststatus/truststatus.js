@@ -98,6 +98,11 @@ class Maintenance {
     plannedStartTime,
     plannedEndTime,
     type,
+    availability,
+    eventStatus,
+    additionalInformation,
+    isCore,
+    affectsAll,
     instanceKeys,
     serviceKeys
   ) {
@@ -106,6 +111,11 @@ class Maintenance {
     this.plannedStartTime = plannedStartTime;
     this.plannedEndTime = plannedEndTime;
     this.type = type;
+    this.availability = availability,
+    this.eventStatus = eventStatus,
+    this.additionalInformation = additionalInformation,
+    this.isCore = isCore,
+    this.affectsAll = affectsAll,
     this.instanceKeys = instanceKeys;
     this.serviceKeys = serviceKeys;
   }
@@ -240,6 +250,11 @@ export default class Truststatus extends LightningElement {
           mRes.plannedStartTime,
           mRes.plannedEndTime,
           mRes.message.maintenanceType,
+          mRes.message.availability,
+          mRes.message.eventStatus,
+          mRes.additionalInformation,
+          mRes.isCore,
+          mRes.affectsAll,
           mRes.instanceKeys,
           mRes.serviceKeys
         )
@@ -248,6 +263,7 @@ export default class Truststatus extends LightningElement {
     this.maintenances = this.maintenances.concat(maintenanceList);
     //  console.debug("maintenances" + JSON.stringify(this.maintenances));
   }
+
   processInstanceInfo(results) {
     this.instance = new Instance(
       results.key,

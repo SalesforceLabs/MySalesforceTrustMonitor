@@ -51,7 +51,23 @@
                                 <lightning-formatted-date-time value={maintenance.plannedEndTime} year="numeric" month="short" day="2-digit" hour="numeric"
                                 weekday="long" time-zone-name="short"></lightning-formatted-date-time>
                             </div>
-                        </div>                                          
+                        </div>  
+                        <div class="slds-m-around_small">
+                            <div class="slds-text-color_weak">Availability :</div>
+                            <div class="capitalize">{maintenance.availability}</div>
+                        </div>   
+                        <div class="slds-m-around_small">
+                            <div class="slds-text-color_weak">Event Status :</div>
+                            <div class="capitalize">{maintenance.eventStatus}</div>
+                        </div>   
+                        <div class="slds-m-around_small">
+                            <div class="slds-text-color_weak">Is Core :</div>
+                            <div class="capitalize">{maintenance.isCore}</div>
+                        </div>   
+                        <div class="slds-m-around_small">
+                            <div class="slds-text-color_weak">Additional Information :</div>
+                            <div class="capitalize">{maintenance.additionalInformation}</div>
+                        </div>                                 
                     </lightning-card>
                 </div>
             </div>
