@@ -63,11 +63,13 @@
                         <div class="slds-m-around_small">
                             <div class="slds-text-color_weak">Is Core :</div>
                             <div class="capitalize">{maintenance.isCore}</div>
-                        </div>   
-                        <div class="slds-m-around_small">
-                            <div class="slds-text-color_weak">Additional Information :</div>
-                            <div class="capitalize">{maintenance.additionalInformation}</div>
-                        </div>                                 
+                        </div>  
+                        <template if:true={maintenance.additionalInformation}>
+                            <div class="slds-m-around_small">
+                                <div class="slds-text-color_weak">Additional Information :</div>
+                                <div class="capitalize">{maintenance.additionalInformation}</div>
+                            </div>
+                        </template>                                                     
                     </lightning-card>
                 </div>
             </div>

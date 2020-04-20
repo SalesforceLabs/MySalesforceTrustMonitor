@@ -29,14 +29,18 @@
               <div class="slds-text-color_weak">Environment :</div>
               <div class="capitalize">{instance.environment}</div>
             </div>
-            <div class="slds-m-around_small">
-              <div class="slds-text-color_weak">Release Version :</div>
-              <div>{instance.releaseVersion}</div>
-            </div>
-            <div class="slds-m-around_small">
-              <div class="slds-text-color_weak">Release Number :</div>
-              <div>{instance.releaseNumber}</div>
-            </div>
+            <template if:true={instance.releaseVersion}>
+              <div class="slds-m-around_small">
+                <div class="slds-text-color_weak">Release Version :</div>
+                <div>{instance.releaseVersion}</div>
+              </div>
+            </template>
+            <template if:true={instance.releaseNumber}>
+              <div class="slds-m-around_small">
+                <div class="slds-text-color_weak">Release Number :</div>
+                <div>{instance.releaseNumber}</div>
+              </div>
+            </template>            
             <div class="slds-m-around_small">
               <div class="slds-text-color_weak">Products :</div>
               <div>
