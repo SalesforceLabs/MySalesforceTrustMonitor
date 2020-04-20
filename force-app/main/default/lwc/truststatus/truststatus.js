@@ -346,6 +346,13 @@ export default class Truststatus extends LightningElement {
         incidentList.push(incident);
       }
     }
+
+    incidentList.sort((a, b) => {
+      let aCreatedDate = new Date(a.createdAt);
+      let bCreatedDate = new Date(b.createdAt);
+      return aCreatedDate - bCreatedDate;
+    });
+
     this.incidents = this.incidents.concat(incidentList);
   }
 }
