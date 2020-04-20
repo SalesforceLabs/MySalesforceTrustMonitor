@@ -14,7 +14,6 @@ export default class InstanceSearch extends LightningElement {
     @track searchBoxTitle;
 
     connectedCallback() {
-        console.log('loaded'+ this.inputString);
         this.handleFavorites();
     }
 
@@ -53,7 +52,6 @@ export default class InstanceSearch extends LightningElement {
 
     handleSearchResults(){
         this.searchBoxTitle = 'Search Results';
-        console.log('called search'+ this.inputString);
         this.sfdcinstances = null;
         this.instances = null;
         this.domains = null;
@@ -71,7 +69,6 @@ export default class InstanceSearch extends LightningElement {
 
     handleFavorites(){
         this.searchBoxTitle = 'My Favorites';
-        console.log('called favorites'+ this.inputString);
         this.sfdcinstances = null;
         this.instances = null;
         this.domains = null;
@@ -79,7 +76,6 @@ export default class InstanceSearch extends LightningElement {
             getFavoritesList()
             .then(result =>{
                 this.sfdcinstances = result;
-                console.log(result);
                 this.populateResults();
             })
             .catch(error => {

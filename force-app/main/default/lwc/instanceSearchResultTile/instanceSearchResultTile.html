@@ -13,9 +13,6 @@
                                 <lightning-button-icon class="actionButtons" icon-name="action:delete"  size="small" variant="brand" alternative-text="Remove Favorite" data-instancekey={keyx} data-keytype="INSTANCE" data-sfid={sfId} onclick={removeFavorite}></lightning-button-icon>
                             </template>                        
                         </lightning-button-group>
-                        <!--p class="slds-p-horizontal_small">
-                            {keyx} , {location} , {environment} , {isActive} , {type}>
-                        </p-->
                     </lightning-card>
                 </template>
                 <template if:false={isInstance}>                    
@@ -29,9 +26,6 @@
                                 <lightning-button-icon class="actionButtons" icon-name="action:delete"  size="small" variant="brand" alternative-text="Remove Favorite" data-instancekey={instanceKey} data-keytype="DOMAIN" data-alias={alias} data-sfid={sfId} onclick={removeFavorite}></lightning-button-icon>
                             </template>                        
                         </lightning-button-group>
-                        <!--p class="slds-p-horizontal_small">
-                            {type} , {alias} , {instanceKey} , {aliasType}>
-                        </p-->
                     </lightning-card>
                 </template>
             </div>

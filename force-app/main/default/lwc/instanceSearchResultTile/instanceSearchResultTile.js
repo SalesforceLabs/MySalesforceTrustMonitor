@@ -50,7 +50,6 @@ export default class InstanceSearchResultTile extends LightningElement {
         var eventData = new Object();
         eventData.instanceKey = event.target.dataset.instancekey;
         eventData.keyType = event.target.dataset.keytype;       
-        console.log(event.target.dataset.instancekey+JSON.stringify(eventData));
         fireEvent(this.pageRef,'getStatus',eventData);
     }
 
