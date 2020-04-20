@@ -260,6 +260,12 @@ export default class Truststatus extends LightningElement {
         )
       );
     }
+    maintenanceList.sort((a, b) => {
+      let aStartTime = new Date(a.plannedStartTime);
+      let bStartTime = new Date(b.plannedStartTime);
+      return aStartTime - bStartTime;
+    });
+
     this.maintenances = this.maintenances.concat(maintenanceList);
     //  console.debug("maintenances" + JSON.stringify(this.maintenances));
   }
