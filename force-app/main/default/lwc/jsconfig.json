@@ -3,11 +3,17 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/favoriteInstances": [
+                "favoriteInstances/favoriteInstances.js"
+            ],
             "c/instanceSearch": [
                 "instanceSearch/instanceSearch.js"
             ],
             "c/instanceSearchResultTile": [
                 "instanceSearchResultTile/instanceSearchResultTile.js"
+            ],
+            "c/ldsUtils": [
+                "ldsUtils/ldsUtils.js"
             ],
             "c/pubsub": [
                 "pubsub/pubsub.js"
@@ -26,9 +32,6 @@
             ],
             "c/truststatus": [
                 "truststatus/truststatus.js"
-            ],
-            "c/favoriteInstances": [
-                "favoriteInstances/favoriteInstances.js"
             ]
         }
     },
