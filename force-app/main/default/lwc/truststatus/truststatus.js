@@ -111,11 +111,11 @@ class Maintenance {
     this.plannedStartTime = plannedStartTime;
     this.plannedEndTime = plannedEndTime;
     this.type = type;
-    this.availability = availability,
-    this.eventStatus = eventStatus,
-    this.additionalInformation = additionalInformation,
-    this.isCore = isCore,
-    this.affectsAll = affectsAll,
+    this.availability = availability;
+    this.eventStatus = eventStatus;
+    this.additionalInformation = additionalInformation;
+    this.isCore = isCore;
+    this.affectsAll = affectsAll;
     this.instanceKeys = instanceKeys;
     this.serviceKeys = serviceKeys;
   }
