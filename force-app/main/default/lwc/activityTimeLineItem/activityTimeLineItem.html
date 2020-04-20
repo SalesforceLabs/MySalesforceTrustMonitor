@@ -30,28 +30,28 @@
                 </div>
                 <div if:true={expanded} class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
                     <lightning-card  variant="Narrow">
-                        <p class="slds-p-horizontal_small">
-                            <span class="slds-text-color_weak">Id : </span>
-                            <span>{maintenance.id}</span>
-                        </p>  
-                        <p class="slds-p-horizontal_small">
-                            <span class="slds-text-color_weak">Type : </span>
-                            <span>{maintenance.type}</span>
-                        </p>
-                        <p class="slds-p-horizontal_small">
-                            <span class="slds-text-color_weak">Planned Start Time : </span>
-                            <span>
+                        <div class="slds-m-around_small">
+                            <div class="slds-text-color_weak">Id :</div>
+                            <div>{maintenance.id}</div>
+                        </div>
+                        <div class="slds-m-around_small">
+                            <div class="slds-text-color_weak">Type :</div>
+                            <div class="capitalize">{maintenance.type}</div>
+                        </div>
+                        <div class="slds-m-around_small">
+                            <div class="slds-text-color_weak">Planned Start Time :</div>
+                            <div>
                                 <lightning-formatted-date-time value={maintenance.plannedStartTime} year="numeric" month="short" day="2-digit" hour="numeric"
                                 weekday="long" time-zone-name="short"></lightning-formatted-date-time>
-                            </span>
-                        </p>
-                        <p class="slds-p-horizontal_small">
-                            <span class="slds-text-color_weak">Planned End Time : </span>
-                            <span>
+                            </div>
+                        </div>
+                        <div class="slds-m-around_small">
+                            <div class="slds-text-color_weak">Planned End Time :</div>
+                            <div>
                                 <lightning-formatted-date-time value={maintenance.plannedEndTime} year="numeric" month="short" day="2-digit" hour="numeric"
                                 weekday="long" time-zone-name="short"></lightning-formatted-date-time>
-                            </span>
-                        </p>                          
+                            </div>
+                        </div>                                          
                     </lightning-card>
                 </div>
             </div>

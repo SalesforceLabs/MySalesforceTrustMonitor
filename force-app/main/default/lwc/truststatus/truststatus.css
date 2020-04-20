@@ -2,3 +2,6 @@
     margin: auto;
     background-color: white;
 }
+.capitalize{
+    text-transform: capitalize;
+}
