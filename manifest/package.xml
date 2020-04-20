@@ -8,25 +8,25 @@
         <members>SFInstance__c</members>
         <members>OrgTrustHealth</members>
         <name>CustomTab</name>
+    </types>   
+    <types>
+        <members>instanceSearch</members>
+        <members>instanceSearchResultTile</members>
+        <members>activityTimeline</members>
+        <members>activityTimeLineItem</members>
+        <members>pubsub</members>
+        <members>trustmaintenance</members>
+        <members>trustproducts</members>
+        <members>truststatus</members>
+        <members>trustService</members>
+        <members>trustIncidents</members>
+        <members>ldsUtils</members>
+        <name>LightningComponentBundle</name>
     </types>
     <types>
         <members>OrgTrustController</members>
         <members>OrgTrustControllerTest</members>
         <name>ApexClass</name>
-    </types>
-    <types>
-        <members>trustmaintenance</members>
-        <members>trustproducts</members>
-        <members>trustService</members>
-        <members>truststatus</members>
-        <members>trustIncidents</members>
-        <members>instanceSearch</members>
-        <members>instanceSearchResultTile</members>
-        <members>pubsub</members>
-        <members>ldsUtils</members>
-        <members>activityTimeline</members>
-        <members>activityTimeLineItem</members>
-        <name>LightningComponentBundle</name>
     </types>
     <types>
         <members>SFDC_TRUST</members>
@@ -41,17 +41,18 @@
         <name>MatchingRule</name>
     </types>
     <types>
-        <members>OrgTrustStaticMockResponse</members>
-        <members>OrgTrustInstancesStaticMockResponse</members>
-        <name>StaticResource</name>
-    </types>
-    <types>
         <members>OrgTrustHealth</members>
         <name>CustomApplication</name>
     </types>   
     <types>
         <members>OrgTrustHealth</members>
+        <members>OrgTrustHealth_UtilityBar</members>
         <name>FlexiPage</name>
     </types> 
+    <types>
+        <members>OrgTrustStaticMockResponse</members>
+        <members>OrgTrustInstancesStaticMockResponse</members>
+        <name>StaticResource</name>
+    </types>
     <version>48.0</version>
 </Package>
