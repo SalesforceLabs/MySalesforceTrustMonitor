@@ -25,7 +25,7 @@
         <members>pubsub</members>
         <members>ldsUtils</members>
         <members>activityTimeline</members>
-        <members>activityTimelineItem</members>
+        <members>activityTimeLineItem</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
