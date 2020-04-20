@@ -66,7 +66,7 @@ export default class InstanceSearchResultTile extends LightningElement {
                     variant: 'success'
                 })
             );
-            //return refreshApex(this.wiredAccountsResult);
+            this.dispatchEvent(new CustomEvent('refreshlist'));
         })
         .catch((error) => {
             this.dispatchEvent(

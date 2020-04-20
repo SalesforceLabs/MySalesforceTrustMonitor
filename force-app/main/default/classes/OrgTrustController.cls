@@ -84,7 +84,7 @@ public with sharing class OrgTrustController {
     }
   }
 
-  @AuraEnabled(cacheable=true)
+  @AuraEnabled(cacheable=false)
   public static List<SFDCInstance> getFavoritesList(){
     List<SFInstance__c> sfInstances = new List<SFInstance__c>();
     List<SFDCInstance> instances = new List<SFDCInstance>();

@@ -1,6 +1,7 @@
 import { LightningElement,api,track,wire} from 'lwc';
 import getInstanceList from '@salesforce/apex/OrgTrustController.getInstanceList';
 import getFavoritesList from '@salesforce/apex/OrgTrustController.getFavoritesList';
+import { refreshApex } from '@salesforce/apex';
 
 export default class InstanceSearch extends LightningElement {
     @track title = 'Salesforce Trust Monitoring!';
@@ -34,6 +35,9 @@ export default class InstanceSearch extends LightningElement {
         this.inputString = event.target.value;
     }
 
+    refreshSFInstanceListHandler(){
+        this.handleFavorites();
+    }
     
     handleSearch (){
         this.sfdcinstances = null;
@@ -75,6 +79,7 @@ export default class InstanceSearch extends LightningElement {
             getFavoritesList()
             .then(result =>{
                 this.sfdcinstances = result;
+                console.log(result);
                 this.populateResults();
             })
             .catch(error => {
