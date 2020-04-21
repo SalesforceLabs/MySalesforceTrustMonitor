@@ -32,6 +32,9 @@
             ],
             "c/truststatus": [
                 "truststatus/truststatus.js"
+            ],
+            "c/trustDataTable": [
+                "trustDataTable/trustDataTable.js"
             ]
         }
     },
