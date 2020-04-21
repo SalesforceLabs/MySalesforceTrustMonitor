@@ -23,7 +23,7 @@
             </h3>
             <div class="slds-m-around_small">
               <div class="slds-text-color_weak">Region :</div>
-              <div>{instance.location}</div>
+              <div>{instance.instanceloc}</div>
             </div>
             <div class="slds-m-around_small">
               <div class="slds-text-color_weak">Environment :</div>
@@ -40,7 +40,7 @@
                 <div class="slds-text-color_weak">Release Number :</div>
                 <div>{instance.releaseNumber}</div>
               </div>
-            </template>            
+            </template>
             <div class="slds-m-around_small">
               <div class="slds-text-color_weak">Products :</div>
               <div>
@@ -73,9 +73,9 @@
               ></c-trustmaintenance>
             </lightning-tab>
             <!--template if:true={incidentExists}-->
-              <lightning-tab label="Incidents">
-                <c-trust-incidents incidents={incidents}></c-trust-incidents>
-              </lightning-tab>
+            <lightning-tab label="Incidents">
+              <c-trust-incidents incidents={incidents}></c-trust-incidents>
+            </lightning-tab>
             <!--/template-->
           </lightning-tabset>
         </div>

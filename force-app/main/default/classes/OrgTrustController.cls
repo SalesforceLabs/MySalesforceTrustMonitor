@@ -85,28 +85,29 @@ public with sharing class OrgTrustController {
   }
 
   @AuraEnabled(cacheable=false)
-  public static List<SFDCInstance> getFavoritesList(){
+  public static List<SFDCInstance> getFavoritesList() {
     List<SFInstance__c> sfInstances = new List<SFInstance__c>();
     List<SFDCInstance> instances = new List<SFDCInstance>();
-    sfInstances = [SELECT Id, Name, Instance_Key_Type__c, Alias__c, OwnerId FROM SFInstance__c
-                  WHERE OwnerId=: UserInfo.getUserId()];
+    sfInstances = [
+      SELECT Id, Name, Instance_Key_Type__c, Alias__c, OwnerId
+      FROM SFInstance__c
+      WHERE OwnerId = :UserInfo.getUserId()
+    ];
     if (!sfInstances.isEmpty()) {
-      for (SFInstance__c sfInstance: sfInstances)  {
+      for (SFInstance__c sfInstance : sfInstances) {
         SFDCInstance instance = new SFDCInstance();
-        if (sfInstance.Alias__c !=null ) {
+        if (sfInstance.Alias__c != null) {
           instance.instanceKey = sfInstance.Name;
           instance.alias = sfInstance.Alias__c;
           instance.aliasType = 'domain';
-        }
-        else{
+        } else {
           instance.key = sfInstance.Name;
         }
         instance.sfId = sfInstance.Id;
         instances.add(instance);
       }
       return instances;
-    }
-    else{
+    } else {
       return null;
     }
   }
@@ -135,7 +136,7 @@ public with sharing class OrgTrustController {
     @AuraEnabled
     public String key;
     @AuraEnabled
-    public String location;
+    public String instanceloc;
     @AuraEnabled
     public String environment;
     @AuraEnabled

@@ -73,7 +73,7 @@ class Incident {
 class Instance {
   constructor(
     instanceName,
-    location,
+    instanceloc,
     environment,
     releaseVersion,
     releaseNumber,
@@ -81,7 +81,7 @@ class Instance {
     isActive
   ) {
     this.name = instanceName;
-    this.location = location;
+    this.instanceloc = instanceloc;
     this.environment = environment;
     this.releaseVersion = releaseVersion;
     this.releaseNumber = releaseNumber;
