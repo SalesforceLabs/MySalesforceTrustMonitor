@@ -1,19 +1,28 @@
 <template>          
 	<ul class="slds-timeline">
-        <template if:true={maintenances}>
-            <template for:each={maintenances} for:item="maintenance">
-                <c-activity-time-line-item key={maintenance.id} the-record={maintenance} title={maintenance.id} date-value={maintenance.plannedStartTime} is-maintenance="true"></c-activity-time-line-item>
-            </template>
-        </template>    
-        <template if:true={incidentExists}>
-            <template for:each={incidents} for:item="incident">
-                <c-activity-time-line-item key={incident.id} the-record={incident} title={incident.id} date-value={incident.createdAt} is-incident="true"></c-activity-time-line-item>
-            </template>
-        </template>   
-        <template if:false={incidentExists}>
-            <div class="slds-text-heading_small slds-text-color_success slds-text-align_center">
-                <h1><strong>No Incidents !!!</strong></h1>
-            </div>           
-        </template>  
+        <template if:true={showMaintenances}>
+            <template if:true={maintenanceExists}>
+                <template for:each={maintenances} for:item="maintenance">
+                    <c-activity-time-line-item key={maintenance.id} the-record={maintenance} title={maintenance.id} date-value={maintenance.plannedStartTime} is-maintenance="true"></c-activity-time-line-item>
+                </template>
+            </template> 
+            <template if:false={maintenanceExists}>
+                <div class="slds-text-heading_small slds-text-color_success slds-text-align_center">
+                    <h1><strong>No Maintenances !!!</strong></h1>
+                </div>
+            </template> 
+        </template>
+        <template if:true={showIncidents}>
+            <template if:true={incidentExists}>
+                <template for:each={incidents} for:item="incident">
+                    <c-activity-time-line-item key={incident.id} the-record={incident} title={incident.id} date-value={incident.createdAt} is-incident="true"></c-activity-time-line-item>
+                </template>
+            </template>   
+            <template if:false={incidentExists}>
+                <div class="slds-text-heading_small slds-text-color_success slds-text-align_center">
+                    <h1><strong>No Incidents !!!</strong></h1>
+                </div>           
+            </template>  
+        </template>          
     </ul>
 </template>
