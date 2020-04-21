@@ -55,4 +55,22 @@ public class OrgTrustControllerTest {
     String currentOrgName = OrgTrustController.getCurrentOrg();
     System.assertEquals(orgName, currentOrgName);
   }
+
+  @isTest
+  static void testGetFavoritesList() {
+    SFInstance__c sfInstance = new SFInstance__c();
+    sfInstance.Name = 'NA111';
+    sfInstance.Instance_Key_Type__c = 'Instance';
+    sfInstance.Alias__c = 'LWCLearners';
+    insert sfInstance;
+
+    List<OrgTrustController.SFDCInstance> sfdcInstances = OrgTrustController.getFavoritesList();
+
+    System.assert(sfdcInstances.size() > 0);
+    for (OrgTrustController.SFDCInstance sfdcinstance : sfdcInstances) {
+      if (sfInstance.Id == sfdcinstance.sfId) {
+        System.assertEquals(sfInstance.Name, sfdcInstance.instanceKey);
+      }
+    }
+  }
 }
