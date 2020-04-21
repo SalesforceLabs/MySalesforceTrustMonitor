@@ -1,3 +1,6 @@
 .capitalize{
     text-transform: capitalize;
 }
+.stopWrap{
+    white-space: normal;
+}
