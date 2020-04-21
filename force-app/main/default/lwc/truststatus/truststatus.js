@@ -47,7 +47,8 @@ class Incident {
     updatedAt,
     instanceKeys,
     serviceKeys,
-    impacts
+    impacts,
+    incidentEvents
   ) {
     this.id = id;
     this.message = message;
@@ -60,6 +61,9 @@ class Incident {
     this.instanceKeys = instanceKeys;
     this.serviceKeys = serviceKeys;
     this.impacts = impacts;
+    if (incidentEvents.length > 0){
+      this.incidentEvents = incidentEvents;
+    }
   }
   get hasMessage() {
     return this.message.length > 0 ? true : false;
@@ -156,8 +160,6 @@ export default class Truststatus extends LightningElement {
   @track incidents = [];
   @track instance;
   @track error;
-
-  @track incidentExists = this.incidents.length > 0 ? true : false;
 
   connectedCallback() {
     this.keyType = "INSTANCE";
@@ -340,7 +342,8 @@ export default class Truststatus extends LightningElement {
         inc.updatedAt,
         inc.instanceKeys,
         inc.serviceKeys,
-        inc.IncidentImpacts
+        inc.IncidentImpacts,
+        inc.IncidentEvents
       );
       if (incident) {
         incidentList.push(incident);

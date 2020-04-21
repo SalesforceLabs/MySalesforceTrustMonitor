@@ -1,8 +1,12 @@
 import { LightningElement, api, track } from 'lwc';
 
 export default class ActivityTimeLineItem extends LightningElement {
-    @api maintenance;
+    @api theRecord;
+    @api title;
+    @api dateValue;
     @track expanded;
+    @api isMaintenance;
+    @api isIncident;
 
     connectedCallback(){
         this.expanded = false;
@@ -10,5 +14,9 @@ export default class ActivityTimeLineItem extends LightningElement {
 
     toggleDetailSection(){
         this.expanded = !this.expanded;
+    }
+
+    get serviceKeys(){
+        return this.theRecord.serviceKeys.join(", ");
     }
 }

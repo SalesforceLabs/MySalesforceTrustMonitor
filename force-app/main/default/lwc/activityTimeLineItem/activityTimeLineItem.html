@@ -15,62 +15,183 @@
             <div class="slds-media__body">
                 <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
                     <div class="slds-grid slds-grid_vertical-align-center slds-truncate_container_75 slds-no-space">
-                        <h3 class="slds-truncate" title={maintenance.name}>
+                        <h3 class="slds-truncate stopWrap" title={title}>
                             <a href="javascript:void(0);">
-                                <strong>{maintenance.name}</strong>
+                                <strong>{title}</strong>
                             </a>
+                            <p class="capitalize">
+                                <strong>{theRecord.name}</strong>
+                            </p>
                         </h3>
                     </div>
                     <div class="slds-timeline__actions slds-timeline__actions_inline">
                         <p class="slds-timeline__date">
-                            <lightning-formatted-date-time value={maintenance.plannedStartTime} year="numeric" month="short" day="2-digit" hour="numeric"
-                                       weekday="long" time-zone-name="short"></lightning-formatted-date-time>
+                            <lightning-formatted-date-time value={dateValue} year="numeric" month="short" day="2-digit" hour="numeric"
+                            time-zone-name="short"></lightning-formatted-date-time>
                         </p>                       
                     </div>
                 </div>
                 <div if:true={expanded} class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
-                    <lightning-card  variant="Narrow">
-                        <div class="slds-m-around_small">
-                            <div class="slds-text-color_weak">Id :</div>
-                            <div>{maintenance.id}</div>
-                        </div>
-                        <div class="slds-m-around_small">
-                            <div class="slds-text-color_weak">Type :</div>
-                            <div class="capitalize">{maintenance.type}</div>
-                        </div>
-                        <div class="slds-m-around_small">
-                            <div class="slds-text-color_weak">Planned Start Time :</div>
-                            <div>
-                                <lightning-formatted-date-time value={maintenance.plannedStartTime} year="numeric" month="short" day="2-digit" hour="numeric"
-                                weekday="long" time-zone-name="short"></lightning-formatted-date-time>
+                    <template if:true={isMaintenance}>
+                        <lightning-card  variant="Narrow">
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Id :</div>
+                                <div>{theRecord.id}</div>
                             </div>
-                        </div>
-                        <div class="slds-m-around_small">
-                            <div class="slds-text-color_weak">Planned End Time :</div>
-                            <div>
-                                <lightning-formatted-date-time value={maintenance.plannedEndTime} year="numeric" month="short" day="2-digit" hour="numeric"
-                                weekday="long" time-zone-name="short"></lightning-formatted-date-time>
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Name :</div>
+                                <div>{theRecord.name}</div>
                             </div>
-                        </div>  
-                        <div class="slds-m-around_small">
-                            <div class="slds-text-color_weak">Availability :</div>
-                            <div class="capitalize">{maintenance.availability}</div>
-                        </div>   
-                        <div class="slds-m-around_small">
-                            <div class="slds-text-color_weak">Event Status :</div>
-                            <div class="capitalize">{maintenance.eventStatus}</div>
-                        </div>   
-                        <div class="slds-m-around_small">
-                            <div class="slds-text-color_weak">Is Core :</div>
-                            <div class="capitalize">{maintenance.isCore}</div>
-                        </div>  
-                        <template if:true={maintenance.additionalInformation}>
-                            <div class="slds-m-around_small">
-                                <div class="slds-text-color_weak">Additional Information :</div>
-                                <div class="capitalize">{maintenance.additionalInformation}</div>
+                            <template if:true={serviceKeys}>
+                                <div class="slds-m-around_xx-small">
+                                    <div class="slds-text-color_weak">Services Affected :</div>
+                                    <div class="capitalize">{serviceKeys}</div>
+                                </div>
+                            </template>                   
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Type :</div>
+                                <div class="capitalize">{theRecord.type}</div>
                             </div>
-                        </template>                                                     
-                    </lightning-card>
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Planned Start Time :</div>
+                                <div>
+                                    <lightning-formatted-date-time value={theRecord.plannedStartTime} year="numeric" month="short" day="2-digit" hour="numeric"
+                                    weekday="long" time-zone-name="short"></lightning-formatted-date-time>
+                                </div>
+                            </div>
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Planned End Time :</div>
+                                <div>
+                                    <lightning-formatted-date-time value={theRecord.plannedEndTime} year="numeric" month="short" day="2-digit" hour="numeric"
+                                    weekday="long" time-zone-name="short"></lightning-formatted-date-time>
+                                </div>
+                            </div>  
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Availability :</div>
+                                <div class="capitalize">{theRecord.availability}</div>
+                            </div>   
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Event Status :</div>
+                                <div class="capitalize">{theRecord.eventStatus}</div>
+                            </div>   
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Is Core :</div>
+                                <div class="capitalize">{theRecord.isCore}</div>
+                            </div>  
+                            <template if:true={theRecord.additionalInformation}>
+                                <div class="slds-m-around_xx-small">
+                                    <div class="slds-text-color_weak">Additional Information :</div>
+                                    <div class="capitalize">{theRecord.additionalInformation}</div>
+                                </div>
+                            </template>                                                     
+                        </lightning-card>
+                    </template>  
+                    <template if:true={isIncident}>
+                        <lightning-card  variant="Narrow">
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Id :</div>
+                                <div>{theRecord.id}</div>
+                            </div>
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Start Time :</div>
+                                <div>
+                                    <lightning-formatted-date-time value={theRecord.createdAt} year="numeric" month="short" day="2-digit" hour="numeric"
+                                    time-zone-name="short"></lightning-formatted-date-time>
+                                </div>
+                            </div> 
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Is Core :</div>
+                                <div class="capitalize">{theRecord.isCore}</div>
+                            </div>
+                            <div class="slds-m-around_xx-small">
+                                <div class="slds-text-color_weak">Affects All :</div>
+                                <div class="capitalize">{theRecord.affectsAll}</div>
+                            </div>
+                            <template if:true={theRecord.additionalInformation}>
+                                <div class="slds-m-around_xx-small">
+                                    <div class="slds-text-color_weak">Additional Information :</div>
+                                    <div class="capitalize">{theRecord.additionalInformation}</div>
+                                </div>
+                            </template>   
+                            <template if:true={theRecord.impacts}>                                
+                                <div class="slds-box slds-box_x-small slds-m-right_medium slds-m-left_medium">
+                                    <h3 class="slds-m-around_xx-small slds-text-heading_small slds-text-align_center"><strong>Incident Impacts</strong></h3>
+                                    <template for:each={theRecord.impacts} for:item="impact">
+                                        <div key={impact.id} class="slds-border_bottom slds-border_top">                                        
+                                            <lightning-card class="slds-m-around_x-small"  variant="Narrow">
+                                                <h3 slot="title">
+                                                    <template if:true={impact.endTime}>
+                                                        <lightning-icon class="slds-m-right_small" icon-name="utility:success" size="small" variant=success></lightning-icon>
+                                                    </template>
+                                                    <template if:false={impact.endTime}>
+                                                        <lightning-icon class="slds-m-right_small" icon-name="utility:warning" size="small" variant=warning></lightning-icon>
+                                                    </template>
+                                                    <span class="slds-text-heading_x-small">{impact.type}</span>
+                                                </h3>
+                                                <div class="slds-grid slds-wrap slds-m-around_xx-small">
+                                                    <!--div class="slds-col slds-size_1-of-2 slds-text-color_weak">Severity Level :</div>
+                                                    <div class="slds-col slds-size_1-of-2 capitalize">{impact.severity}</div-->
+                                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                        <span class="slds-text-color_weak">Severity : </span><span class="capitalize">{impact.severity}</span>
+                                                    </div>
+                                                    <template if:true={impact.endTime}>
+                                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                            <span class="slds-text-color_weak">Status : </span><span class="capitalize">Resolved</span>
+                                                        </div>
+                                                    </template>
+                                                    <template if:false={impact.endTime}>
+                                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                            <span class="slds-text-color_weak">Status : </span><span class="capitalize">Open</span>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                                <div class="slds-grid slds-wrap slds-m-around_xx-small">
+                                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                        <span class="slds-text-color_weak">Start Time : </span>
+                                                        <lightning-formatted-date-time value={impact.startTime} year="numeric" month="short" day="2-digit" hour="numeric"
+                                                            time-zone-name="short"></lightning-formatted-date-time>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                        <span class="slds-text-color_weak">End Time : </span>
+                                                        <lightning-formatted-date-time value={impact.endTime} year="numeric" month="short" day="2-digit" hour="numeric"
+                                                            time-zone-name="short"></lightning-formatted-date-time>
+                                                    </div>
+                                                </div>                                           
+                                            </lightning-card>  
+                                        </div>                                
+                                    </template>
+                                </div>                               
+                            </template>  
+                            <template if:true={theRecord.incidentEvents}>                                
+                                <div class="slds-box slds-box_x-small slds-m-top_medium slds-m-right_medium slds-m-left_medium">
+                                    <h3 class="slds-m-around_xx-small slds-text-heading_small slds-text-align_center"><strong>Incident Events</strong></h3>
+                                    <template for:each={theRecord.incidentEvents} for:item="incidentEvent">
+                                        <div key={incidentEvent.id} class="slds-border_bottom slds-border_top">
+                                            <lightning-card class="slds-m-around_x-small"  variant="Narrow">
+                                                <h3 slot="title">
+                                                    <lightning-icon class="slds-m-right_small" icon-name="standard:announcement" size="small" variant=warning></lightning-icon>
+                                                    <span class="slds-text-heading_x-small">{incidentEvent.type}</span>
+                                                </h3>
+                                                <div class="slds-grid slds-wrap slds-m-around_xx-small">
+                                                    <div class="slds-col slds-size_1-of-1 slds-m-around_xx-small">
+                                                        <div class="slds-text-color_weak">Created Time :</div>
+                                                        <div>
+                                                            <lightning-formatted-date-time value={incidentEvent.createdAt} year="numeric" month="short" day="2-digit" hour="numeric"
+                                                            time-zone-name="short"></lightning-formatted-date-time>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-1 slds-m-around_xx-small">
+                                                        <div class="slds-text-color_weak">Message :</div>
+                                                        <div class="capitalize">{incidentEvent.message}</div>
+                                                    </div>
+                                                </div>                                
+                                            </lightning-card>  
+                                        </div>                                
+                                    </template>
+                                </div>                               
+                            </template>                                              
+                        </lightning-card>
+                    </template>                 
                 </div>
             </div>
             </div> 

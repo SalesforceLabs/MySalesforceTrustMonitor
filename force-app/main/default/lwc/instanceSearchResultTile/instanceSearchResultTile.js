@@ -53,6 +53,14 @@ export default class InstanceSearchResultTile extends LightningElement {
         fireEvent(this.pageRef,'getStatus',eventData);
     }
 
+    handleTileClick(event){
+        event.preventDefault();
+        var eventData = new Object();
+        eventData.instanceKey = event.target.dataset.instancekey;
+        eventData.keyType = event.target.dataset.keytype;       
+        fireEvent(this.pageRef,'getStatus',eventData);
+    }
+
     removeFavorite(event){
         event.preventDefault();
         const recordId = event.target.dataset.sfid;
