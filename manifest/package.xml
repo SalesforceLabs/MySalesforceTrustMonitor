@@ -21,6 +21,7 @@
         <members>trustService</members>
         <members>trustIncidents</members>
         <members>ldsUtils</members>
+        <members>trustDataTable</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
