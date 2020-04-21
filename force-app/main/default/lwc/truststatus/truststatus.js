@@ -126,26 +126,6 @@ class Maintenance {
 }
 
 export default class Truststatus extends LightningElement {
-  /*maintenanceCols = [
-    {
-      label: "Name",
-      fieldName: "name",
-      type: "String"
-    },
-    {
-      label: "Type",
-      fieldName: "type"
-    },
-    {
-      label: "Start Time",
-      fieldName: "plannedStartTime"
-    },
-    {
-      label: "End Time",
-      fieldName: "plannedEndTime"
-    }
-  ];
-  */
 
   @wire(CurrentPageReference) pageRef;
   @api instanceKey;
