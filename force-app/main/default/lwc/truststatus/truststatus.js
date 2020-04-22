@@ -140,6 +140,7 @@ export default class Truststatus extends LightningElement {
   @track incidents = [];
   @track instance;
   @track error;
+  @track instanceCardTitle;
 
   connectedCallback() {
     this.keyType = "INSTANCE";
@@ -161,6 +162,16 @@ export default class Truststatus extends LightningElement {
 
     this.instanceKey = eventData.instanceKey;
     this.keyType = eventData.keyType;
+    this.instanceCardTitle = eventData.title;
+  }
+
+  get cardTitle(){
+    if (typeof this.instanceCardTitle !== "undefined"){
+      return this.instanceCardTitle;
+    }
+    else{
+      return this.instance.name;
+    }
   }
 
   @wire(getCurrentOrg, {})

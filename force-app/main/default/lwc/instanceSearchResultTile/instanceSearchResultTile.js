@@ -57,7 +57,8 @@ export default class InstanceSearchResultTile extends LightningElement {
         event.preventDefault();
         var eventData = new Object();
         eventData.instanceKey = event.target.dataset.instancekey;
-        eventData.keyType = event.target.dataset.keytype;       
+        eventData.keyType = event.target.dataset.keytype;    
+        eventData.title = event.target.dataset.title;   
         fireEvent(this.pageRef,'getOrgTrustInstanceStatusEvent',eventData);
     }
 
