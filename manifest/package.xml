@@ -12,6 +12,8 @@
     <types>
         <members>instanceSearch</members>
         <members>instanceSearchResultTile</members>
+        <members>instanceFavoritesBox</members>
+        <members>instanceSearchResultBox</members>
         <members>activityTimeline</members>
         <members>activityTimeLineItem</members>
         <members>pubsub</members>
@@ -42,6 +44,22 @@
         <members>OrgTrustHealth_UtilityBar</members>
         <name>FlexiPage</name>
     </types> 
+    <types>
+        <members>SFInstance__c.SF_Instance_Duplicate_Rule</members>
+        <name>DuplicateRule</name>
+    </types>
+    <types>
+        <members>SFInstance__c.SFInstance_Matching_Rule</members>
+        <name>MatchingRule</name>
+    </types>
+    <types>
+        <members>Populate_Matching_Key_for_SFInstances</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>Populate_Matching_Key_for_SFInstances</members>
+        <name>FlowDefinition</name>
+    </types>
     <types>
         <members>OrgTrustStaticMockResponse</members>
         <members>OrgTrustInstancesStaticMockResponse</members>
