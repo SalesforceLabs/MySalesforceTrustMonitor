@@ -46,19 +46,19 @@ export default class InstanceSearchResultTile extends LightningElement {
     }
 
     getStatus(event){
-        event.preventDefault();
-        var eventData = new Object();
-        eventData.instanceKey = event.target.dataset.instancekey;
-        eventData.keyType = event.target.dataset.keytype;       
-        fireEvent(this.pageRef,'getStatus',eventData);
+        this.fireGetOrgTrustInstanceStatusEvent(event);
     }
 
     handleTileClick(event){
+        this.fireGetOrgTrustInstanceStatusEvent(event);
+    }
+
+    fireGetOrgTrustInstanceStatusEvent(event){
         event.preventDefault();
         var eventData = new Object();
         eventData.instanceKey = event.target.dataset.instancekey;
         eventData.keyType = event.target.dataset.keytype;       
-        fireEvent(this.pageRef,'getStatus',eventData);
+        fireEvent(this.pageRef,'getOrgTrustInstanceStatusEvent',eventData);
     }
 
     removeFavorite(event){
@@ -73,7 +73,8 @@ export default class InstanceSearchResultTile extends LightningElement {
                     variant: 'success'
                 })
             );
-            this.dispatchEvent(new CustomEvent('refreshlist'));
+            const removeInstanceEvent = new CustomEvent('removeinstanceevent');
+            this.dispatchEvent(removeInstanceEvent);
         })
         .catch((error) => {
             this.dispatchEvent(
@@ -104,6 +105,7 @@ export default class InstanceSearchResultTile extends LightningElement {
                     variant: 'success'
                 })
             );
+            this.fireRefreshFavoriteListEvent(event);
         })
         .catch((error) => {
             this.dispatchEvent(
@@ -114,5 +116,10 @@ export default class InstanceSearchResultTile extends LightningElement {
                 })
             );
         });
+    }
+
+    fireRefreshFavoriteListEvent(event){
+        event.preventDefault();    
+        fireEvent(this.pageRef,'refreshFavoriteListEvent',event);
     }
 }

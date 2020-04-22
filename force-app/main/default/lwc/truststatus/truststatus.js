@@ -144,7 +144,7 @@ export default class Truststatus extends LightningElement {
   connectedCallback() {
     this.keyType = "INSTANCE";
     // subscribe to bearListUpdate event
-    registerListener("getStatus", this.handleGetStatus, this);
+    registerListener("getOrgTrustInstanceStatusEvent", this.handleGetStatus, this);
   }
 
   disconnectedCallback() {
