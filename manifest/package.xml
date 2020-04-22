@@ -5,7 +5,6 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>SFInstance__c</members>
         <members>OrgTrustHealth</members>
         <name>CustomTab</name>
     </types>   
@@ -23,7 +22,6 @@
         <members>trustService</members>
         <members>trustIncidents</members>
         <members>ldsUtils</members>
-        <members>trustDataTable</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
@@ -44,22 +42,6 @@
         <members>OrgTrustHealth_UtilityBar</members>
         <name>FlexiPage</name>
     </types> 
-    <types>
-        <members>SFInstance__c.SF_Instance_Duplicate_Rule</members>
-        <name>DuplicateRule</name>
-    </types>
-    <types>
-        <members>SFInstance__c.SFInstance_Matching_Rule</members>
-        <name>MatchingRule</name>
-    </types>
-    <types>
-        <members>Populate_Matching_Key_for_SFInstances</members>
-        <name>Flow</name>
-    </types>
-    <types>
-        <members>Populate_Matching_Key_for_SFInstances</members>
-        <name>FlowDefinition</name>
-    </types>
     <types>
         <members>OrgTrustStaticMockResponse</members>
         <members>OrgTrustInstancesStaticMockResponse</members>
