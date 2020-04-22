@@ -1,7 +1,7 @@
 <template>
   <!-- trying to style the content-->
   <template if:true={instance}>
-    <div class="app slds-p-around_x-large slds-grid_align-center slds-gutters">
+    <div class="app slds-p-top_large slds-p-bottom_small slds-grid_align-center slds-gutters">
       <div class="slds-grid slds-wrap">
         <div
           class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 instanceBox slds-m-bottom_small"
@@ -56,22 +56,53 @@
         <div
           class="slds-col slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_9-of-12 slds-m-bottom_small"
         >
-          <lightning-tabset variant="scoped">
-            <lightning-tab label="Services">
+          <div class="slds-show_small">         
+            <lightning-tabset variant="scoped">
+              <lightning-tab label="Services">
+                <c-trust-service
+                  services={services}
+                  instance={instance}
+                ></c-trust-service>
+              </lightning-tab>
+              <lightning-tab label="Maintenances">
+                <c-trustmaintenance
+                  maintenances={maintenances}
+                ></c-trustmaintenance>
+              </lightning-tab>
+              <lightning-tab label="Incidents">
+                <c-trust-incidents incidents={incidents}></c-trust-incidents>
+              </lightning-tab>
+            </lightning-tabset>
+          </div>
+          <div class="slds-hide_small slds-m-bottom_small">
+            <lightning-card variant="Narrow"> 
+              <h3 slot="title">
+                Services
+              </h3>
               <c-trust-service
-                services={services}
-                instance={instance}
+                  services={services}
+                  instance={instance}
               ></c-trust-service>
-            </lightning-tab>
-            <lightning-tab label="Maintenances">
+            </lightning-card> 
+          </div>
+          <div class="slds-hide_small slds-m-bottom_small">
+            <lightning-card variant="Narrow"> 
+              <h3 slot="title">
+                Maintenances
+              </h3>
               <c-trustmaintenance
-                maintenances={maintenances}
-              ></c-trustmaintenance>
-            </lightning-tab>
-            <lightning-tab label="Incidents">
+                  maintenances={maintenances}
+                ></c-trustmaintenance>
+            </lightning-card> 
+          </div>
+          <div class="slds-hide_small slds-m-bottom_small">
+            <lightning-card variant="Narrow"> 
+              <h3 slot="title">
+                Incidents
+              </h3>
               <c-trust-incidents incidents={incidents}></c-trust-incidents>
-            </lightning-tab>
-          </lightning-tabset>
+            </lightning-card> 
+          </div>
         </div>
       </div>
     </div>

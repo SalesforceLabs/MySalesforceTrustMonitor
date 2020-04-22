@@ -72,7 +72,9 @@ class Incident {
   get hasImpacts() {
     return this.impacts.length > 0 ? true : false;
   }
+
 }
+
 
 class Instance {
   constructor(

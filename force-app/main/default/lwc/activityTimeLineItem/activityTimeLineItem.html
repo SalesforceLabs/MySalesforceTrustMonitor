@@ -4,13 +4,24 @@
             <span class="slds-assistive-text">Event</span>
             <div class="slds-media">
             <div class="slds-media__figure">
+                
                 <lightning-button-icon if:false={expanded} size="x-small" icon-name="utility:chevronright"
                             alternative-text="Toggle details" onclick={toggleDetailSection}>
                 </lightning-button-icon>
                 <lightning-button-icon if:true={expanded} size="x-small" icon-name="utility:switch"
                     alternative-text="Toggle details" onclick={toggleDetailSection}>
                 </lightning-button-icon>
-                <lightning-icon size="small" icon-name=standard:event></lightning-icon>
+
+                
+                <!-- Added Mobile Support-->
+                <span class="slds-hide_small">
+                    <lightning-icon size="x-small" icon-name=standard:event></lightning-icon>
+                </span>
+
+                <span class="slds-show_small">
+                    <lightning-icon size="small" icon-name=standard:event></lightning-icon>
+                </span>
+                
             </div>
             <div class="slds-media__body">
                 <div class="slds-grid slds-grid_align-spread slds-timeline__trigger">
@@ -25,13 +36,19 @@
                         </h3>
                     </div>
                     <div class="slds-timeline__actions slds-timeline__actions_inline">
-                        <p class="slds-timeline__date">
-                            <lightning-formatted-date-time value={dateValue} year="numeric" month="short" day="2-digit" hour="numeric"
-                            time-zone-name="short"></lightning-formatted-date-time>
-                        </p>                       
+                        <!-- Added Mobile Support-->
+                        <span class="slds-show_small">
+                            <p class="slds-timeline__date">
+                                <lightning-formatted-date-time value={dateValue} year="numeric" month="short" day="2-digit" hour="numeric"
+                                time-zone-name="short"></lightning-formatted-date-time>
+                            </p>  
+                        </span>
+                        <span class="slds-hide_small">
+                            <lightning-formatted-date-time value={dateValue} month="short" day="2-digit"></lightning-formatted-date-time>
+                        </span>                                            
                     </div>
                 </div>
-                <div if:true={expanded} class="slds-box slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
+                <div if:true={expanded} class="slds-box_x-small slds-theme_shade slds-m-top_x-small slds-m-horizontal_xx-small slds-p-around_medium">
                     <template if:true={isMaintenance}>
                         <lightning-card  variant="Narrow">
                             <div class="slds-m-around_xx-small">
@@ -114,44 +131,52 @@
                                 </div>
                             </template>   
                             <template if:true={theRecord.impacts}>                                
-                                <div class="slds-box slds-box_x-small slds-m-right_medium slds-m-left_medium">
+                                <div class="slds-box slds-box_x-small slds-m-right_xx-small slds-m-left_xx-small">
                                     <h3 class="slds-m-around_xx-small slds-text-heading_small slds-text-align_center"><strong>Incident Impacts</strong></h3>
                                     <template for:each={theRecord.impacts} for:item="impact">
                                         <div key={impact.id} class="slds-border_bottom slds-border_top">                                        
                                             <lightning-card class="slds-m-around_x-small"  variant="Narrow">
-                                                <h3 slot="title">
-                                                    <template if:true={impact.endTime}>
-                                                        <lightning-icon class="slds-m-right_small" icon-name="utility:success" size="small" variant=success></lightning-icon>
-                                                    </template>
-                                                    <template if:false={impact.endTime}>
-                                                        <lightning-icon class="slds-m-right_small" icon-name="utility:warning" size="small" variant=warning></lightning-icon>
-                                                    </template>
-                                                    <span class="slds-text-heading_x-small">{impact.type}</span>
+                                                <h3 slot="title">                                                   
+                                                    <div class="stopWrap">
+                                                        <template if:true={impact.endTime}>
+                                                            <!-- Added Mobile Support-->
+                                                            <span class="slds-show_small">
+                                                                <lightning-icon class="slds-m-right_small" icon-name="utility:success" size="small" variant=success></lightning-icon>
+                                                            </span>
+                                                            <span class="slds-hide_small">
+                                                                <lightning-icon class="slds-m-right_xx-small" icon-name="utility:success" size="x-small" variant=success></lightning-icon>
+                                                            </span>
+                                                        </template>
+                                                        <template if:false={impact.endTime}>
+                                                            <lightning-icon class="slds-m-right_small" icon-name="utility:warning" size="small" variant=warning></lightning-icon>
+                                                        </template>
+                                                        <span class="slds-text-heading_x-small">{impact.type}</span>
+                                                    </div>
                                                 </h3>
                                                 <div class="slds-grid slds-wrap slds-m-around_xx-small">
                                                     <!--div class="slds-col slds-size_1-of-2 slds-text-color_weak">Severity Level :</div>
                                                     <div class="slds-col slds-size_1-of-2 capitalize">{impact.severity}</div-->
-                                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2 slds-m-around_xx-small">
                                                         <span class="slds-text-color_weak">Severity : </span><span class="capitalize">{impact.severity}</span>
                                                     </div>
                                                     <template if:true={impact.endTime}>
-                                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2 slds-m-around_xx-small">
                                                             <span class="slds-text-color_weak">Status : </span><span class="capitalize">Resolved</span>
                                                         </div>
                                                     </template>
                                                     <template if:false={impact.endTime}>
-                                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2 slds-m-around_xx-small">
                                                             <span class="slds-text-color_weak">Status : </span><span class="capitalize">Open</span>
                                                         </div>
                                                     </template>
                                                 </div>
                                                 <div class="slds-grid slds-wrap slds-m-around_xx-small">
-                                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2 slds-m-around_xx-small">
                                                         <span class="slds-text-color_weak">Start Time : </span>
                                                         <lightning-formatted-date-time value={impact.startTime} year="numeric" month="short" day="2-digit" hour="numeric"
                                                             time-zone-name="short"></lightning-formatted-date-time>
                                                     </div>
-                                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
+                                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2 slds-m-around_xx-small">
                                                         <span class="slds-text-color_weak">End Time : </span>
                                                         <lightning-formatted-date-time value={impact.endTime} year="numeric" month="short" day="2-digit" hour="numeric"
                                                             time-zone-name="short"></lightning-formatted-date-time>
@@ -163,14 +188,22 @@
                                 </div>                               
                             </template>  
                             <template if:true={theRecord.incidentEvents}>                                
-                                <div class="slds-box slds-box_x-small slds-m-top_medium slds-m-right_medium slds-m-left_medium">
+                                <div class="slds-box slds-box_x-small slds-m-top_medium slds-m-right_xx-small slds-m-left_xx-small">
                                     <h3 class="slds-m-around_xx-small slds-text-heading_small slds-text-align_center"><strong>Incident Events</strong></h3>
                                     <template for:each={theRecord.incidentEvents} for:item="incidentEvent">
                                         <div key={incidentEvent.id} class="slds-border_bottom slds-border_top">
                                             <lightning-card class="slds-m-around_x-small"  variant="Narrow">
                                                 <h3 slot="title">
-                                                    <lightning-icon class="slds-m-right_small" icon-name="standard:announcement" size="small" variant=warning></lightning-icon>
-                                                    <span class="slds-text-heading_x-small">{incidentEvent.type}</span>
+                                                    <div class="stopWrap">
+                                                        <!-- Added Mobile Support-->
+                                                        <span class="slds-show_small">
+                                                            <lightning-icon class="slds-m-right_small" icon-name="standard:announcement" size="small" variant=warning></lightning-icon>
+                                                        </span>
+                                                        <span class="slds-hide_small">
+                                                            <lightning-icon class="slds-m-right_xx-small" icon-name="standard:announcement" size="x-small" variant=warning></lightning-icon>
+                                                        </span>
+                                                        <span class="slds-text-heading_x-small">{incidentEvent.type}</span>
+                                                    </div>
                                                 </h3>
                                                 <div class="slds-grid slds-wrap slds-m-around_xx-small">
                                                     <div class="slds-col slds-size_1-of-1 slds-m-around_xx-small">

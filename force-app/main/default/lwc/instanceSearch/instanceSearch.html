@@ -1,5 +1,5 @@
 <template>
-  <div class="app slds-p-around_x-large slds-grid_align-center">
+  <div class="app slds-p-top_large slds-p-left_small slds-p-right_small slds-p-bottom_small slds-grid_align-center">
     <div>
       <div class="slds-align_absolute-center slds-m-top_small">
         <h1 class="slds-text-heading_large"><b>{title}</b></h1>
@@ -38,12 +38,12 @@
     </div>
 
     <div class="slds-grid slds-wrap slds-m-top_medium slds-m-bottom_small">
-      <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-order_2 slds-large-order_1">
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-order_2 slds-medium-order_1 slds-large-order_1">
         <c-instance-favorites-box title="My Favorites">
         </c-instance-favorites-box>
       </div>
 
-      <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-order_1 slds-large-order_2">
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-order_1 slds-medium-order_2 slds-large-order_2">
         <c-instance-search-result-box 
           sfdcinstances={sfdcinstances} 
           instances={instances} 
