@@ -12,7 +12,7 @@ export default class InstanceFavoritesBox extends LightningElement {
     @wire(CurrentPageReference) pageRef;
 
     get showFavorites(){
-        if (typeof this.sfdcfavinstances === "undefined"){
+        if (typeof this.sfdcfavinstances === "undefined" || this.sfdcfavinstances === null){
             return false;
         }
         else{
