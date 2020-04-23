@@ -5,7 +5,13 @@
                 <template if:true={isInstance}>                 
                     <lightning-card class="cardSize sldsCardBoundary"  variant="Narrow">
                         <h3 slot="title">                                                       
-                            <lightning-icon class="slds-m-right_small" icon-name="standard:orders" size="small"></lightning-icon>                           
+                            <!--lightning-icon class="slds-m-right_small" icon-name="standard:orders" size="small"></lightning-icon-->
+                            <!--template if:false={isFavorite}>
+                                <lightning-button-icon class="actionButtons" icon-name="utility:favorite"  size="small" variant="brand" alternative-text="Mark as Favorite" data-instancekey={keyx} data-keytype="INSTANCE" onclick={saveFavorite}></lightning-button-icon>
+                            </template>  
+                            <template if:true={isFavorite}>
+                                <lightning-button-icon class="actionButtons" icon-name="action:delete"  size="small" variant="brand" alternative-text="Remove Favorite" data-instancekey={keyx} data-keytype="INSTANCE" data-sfid={sfId} onclick={removeFavorite}></lightning-button-icon>
+                            </template-->                          
                             <span class="slds-text-heading_x-small">
                                 <a class="tileAnchor" data-instancekey={keyx} data-keytype="INSTANCE" data-title={cardTitle} onclick={handleTileClick}>{cardTitle}</a>
                             </span>
@@ -24,7 +30,7 @@
                 <template if:false={isInstance}>                    
                     <lightning-card class="cardSize sldsCardBoundary" variant="Narrow">
                         <h3 slot="title">
-                            <lightning-icon class="slds-m-right_small" icon-name="standard:orders" size="small"></lightning-icon>
+                            <!--lightning-icon class="slds-m-right_small" icon-name="standard:orders" size="small"></lightning-icon-->
                             <span class="slds-text-heading_x-small">
                                 <a class="tileAnchor" data-instancekey={alias} data-keytype="DOMAIN" data-title={cardTitle} onclick={handleTileClick}>{cardTitle}</a>
                             </span>
