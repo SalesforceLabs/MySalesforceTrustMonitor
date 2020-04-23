@@ -31,10 +31,6 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>SFDC_TRUST</members>
-        <name>NamedCredential</name>
-    </types>
-    <types>
         <members>OrgTrustHealth</members>
         <name>CustomApplication</name>
     </types>   
@@ -52,5 +48,9 @@
         <members>Org_Trust_Health_User</members>
         <name>PermissionSet</name>
     </types>
+    <types>
+        <members>Trust_API</members>
+        <name>RemoteSiteSetting</name>
+    </types>   
     <version>48.0</version>
 </Package>

@@ -6,6 +6,7 @@ public with sharing class OrgTrustController {
     MID
   }
 
+  public static final String TRUST_API_HOST = 'https://api.status.salesforce.com/v1/';
   public static final String SEARCH_INSTANCE_SERVICE = 'search/';
   public static final String STATUS_SERVICE = '/status';
   public static final String DOMAIN_ENDPOINT = 'instanceAliases/';
@@ -26,14 +27,14 @@ public with sharing class OrgTrustController {
     request.setMethod('GET');
     if (OrgKeyType.DOMAIN.name().equals(keyType)) {
       request.setEndpoint(
-        'callout:SFDC_TRUST/' +
+        TRUST_API_HOST +
         DOMAIN_ENDPOINT +
         instanceKey +
         STATUS_SERVICE
       );
     } else if (OrgKeyType.INSTANCE.name().equals(keyType)) {
       request.setEndpoint(
-        'callout:SFDC_TRUST/' +
+        TRUST_API_HOST +
         INSTANCE_ENDPOINT +
         instanceKey +
         STATUS_SERVICE +
@@ -59,7 +60,7 @@ public with sharing class OrgTrustController {
     List<SFDCInstance> instances = new List<SFDCInstance>();
     HttpRequest httpRequest = new HttpRequest();
     httpRequest.setEndpoint(
-      'callout:SFDC_TRUST/' +
+      TRUST_API_HOST +
       SEARCH_INSTANCE_SERVICE +
       inputString
     );
