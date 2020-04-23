@@ -9,6 +9,7 @@
         <name>CustomTab</name>
     </types>   
     <types>
+        <members>orgTrustApp</members>
         <members>instanceSearch</members>
         <members>instanceSearchResultTile</members>
         <members>instanceFavoritesBox</members>
