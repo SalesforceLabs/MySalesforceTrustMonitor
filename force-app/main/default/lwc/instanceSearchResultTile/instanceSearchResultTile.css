@@ -14,3 +14,7 @@
 .tileAnchor{
     text-decoration: none; 
 }
+.sldsCardBoundary{
+    border: 1px solid #dddbda;
+    border-radius: .25rem;
+}

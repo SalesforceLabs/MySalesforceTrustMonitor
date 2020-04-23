@@ -5,3 +5,7 @@
 .capitalize{
     text-transform: capitalize;
 }
+.sldsCardBoundary{
+    border: 1px solid #dddbda;
+    border-radius: .25rem;
+}
