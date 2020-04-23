@@ -48,5 +48,9 @@
         <members>OrgTrustInstancesStaticMockResponse</members>
         <name>StaticResource</name>
     </types>
+    <types>
+        <members>Org_Trust_Health_User</members>
+        <name>PermissionSet</name>
+    </types>
     <version>48.0</version>
 </Package>
