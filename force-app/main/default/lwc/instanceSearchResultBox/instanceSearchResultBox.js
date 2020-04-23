@@ -11,7 +11,7 @@ export default class InstanceSearchResultBox extends LightningElement {
           return false;
         }
         else if (this.sfdcinstances.length === 0){
-          return false;
+          return true;
         }
         else if (this.sfdcinstances.length > 0){
           return true;
