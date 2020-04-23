@@ -3,7 +3,7 @@ import getInstanceList from "@salesforce/apex/OrgTrustController.getInstanceList
 
 export default class InstanceSearch extends LightningElement {
   
-  @track title = "Salesforce Trust Monitor!";
+  @track title = "Salesforce Trust Monitor";
   @track sfdcinstances;
   @track error;
   inputString = "";
