@@ -2,10 +2,7 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
-            <componentName>instanceSearch</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>truststatus</componentName>
+            <componentName>orgTrustApp</componentName>
         </componentInstances>
         <name>main</name>
         <type>Region</type>
