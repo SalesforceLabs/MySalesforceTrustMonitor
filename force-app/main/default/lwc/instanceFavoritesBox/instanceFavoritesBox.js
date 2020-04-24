@@ -26,7 +26,6 @@ export default class InstanceFavoritesBox extends LightningElement {
     }
 
     disconnectedCallback() {
-      // unsubscribe from bearListUpdate event
       unregisterAllListeners(this);
     }
 

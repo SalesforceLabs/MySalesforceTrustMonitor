@@ -1,19 +1,30 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/favoriteInstances": [
-                "favoriteInstances/favoriteInstances.js"
+            "c/activityTimeLineItem": [
+                "activityTimeLineItem/activityTimeLineItem.js"
+            ],
+            "c/activityTimeline": [
+                "activityTimeline/activityTimeline.js"
+            ],
+            "c/instanceFavoritesBox": [
+                "instanceFavoritesBox/instanceFavoritesBox.js"
             ],
             "c/instanceSearch": [
                 "instanceSearch/instanceSearch.js"
+            ],
+            "c/instanceSearchResultBox": [
+                "instanceSearchResultBox/instanceSearchResultBox.js"
             ],
             "c/instanceSearchResultTile": [
                 "instanceSearchResultTile/instanceSearchResultTile.js"
             ],
             "c/ldsUtils": [
                 "ldsUtils/ldsUtils.js"
+            ],
+            "c/orgTrustApp": [
+                "orgTrustApp/orgTrustApp.js"
             ],
             "c/pubsub": [
                 "pubsub/pubsub.js"
@@ -32,19 +43,7 @@
             ],
             "c/truststatus": [
                 "truststatus/truststatus.js"
-            ],
-            "c/trustDataTable": [
-                "trustDataTable/trustDataTable.js"
             ]
         }
-    },
-    "include": [
-        "**/*",
-        "../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ],
-    "typeAcquisition": {
-        "include": [
-            "jest"
-        ]
     }
 }

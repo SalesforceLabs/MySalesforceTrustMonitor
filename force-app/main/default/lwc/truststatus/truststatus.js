@@ -146,12 +146,10 @@ export default class Truststatus extends LightningElement {
 
   connectedCallback() {
     this.keyType = "INSTANCE";
-    // subscribe to bearListUpdate event
     registerListener("getOrgTrustInstanceStatusEvent", this.handleGetStatus, this);
   }
 
   disconnectedCallback() {
-    // unsubscribe from bearListUpdate event
     unregisterAllListeners(this);
   }
 
@@ -262,7 +260,6 @@ export default class Truststatus extends LightningElement {
     });
 
     this.maintenances = this.maintenances.concat(maintenanceList);
-    //  console.debug("maintenances" + JSON.stringify(this.maintenances));
   }
 
   processInstanceInfo(results) {
