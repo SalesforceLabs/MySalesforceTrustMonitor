@@ -154,12 +154,6 @@ export default class Truststatus extends LightningElement {
   }
 
   handleGetStatus(eventData) {
-    this.maintenances = [];
-    this.products = [];
-    this.incidents = [];
-    this.services = [];
-    this.instanceInfo = {};
-
     this.instanceKey = eventData.instanceKey;
     this.keyType = eventData.keyType;
     this.instanceCardTitle = eventData.title;
@@ -188,9 +182,12 @@ export default class Truststatus extends LightningElement {
     keyType: "$keyType"
   })
   wiredRetrieveOrgTrustStatus({ error, data }) {
-    console.debug("Data => " + JSON.stringify(data));
+    this.maintenances = [];
+    this.products = [];
+    this.incidents = [];
+    this.services = [];
+    this.instanceInfo = {};
     if (data) {
-      console.debug(JSON.stringify(data));
       this.processMaintenances(data);
       this.processProducts(data);
       this.processIncidents(data);
@@ -311,7 +308,6 @@ export default class Truststatus extends LightningElement {
       }
     }
     this.services = this.services.concat(serviceList);
-    console.debug("Services => " + this.services);
   }
 
   processIncidents(results) {
