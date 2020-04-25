@@ -78,6 +78,7 @@ export default class InstanceSearchResultTile extends LightningElement {
             this.dispatchEvent(removeInstanceEvent);
         })
         .catch((error) => {
+            console.log(error);
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Error removing favorite !',
@@ -109,10 +110,11 @@ export default class InstanceSearchResultTile extends LightningElement {
             this.fireRefreshFavoriteListEvent(event);
         })
         .catch((error) => {
+            console.log(error);
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Error',
-                    message: 'Instance key already exists !',
+                    message: reduceErrors(error).join(', '),
                     variant: 'error'
                 })
             );

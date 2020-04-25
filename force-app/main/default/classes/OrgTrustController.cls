@@ -124,7 +124,24 @@ public with sharing class OrgTrustController {
       );
       return '';
     }
+    createCurrentInstance(name);  
     return name;
+  }
+
+  @future
+  public static void createCurrentInstance(String name)  {
+    List<SFInstance__c> sfInstances = new List<SFInstance__c>();
+      if (Schema.sObjectType.SFInstance__c.isAccessible()){
+        sfInstances = [SELECT Id, Name from SFInstance__c WHERE Name =: name];
+        if (sfInstances.isEmpty()){
+          SFInstance__c instance = new SFInstance__c();
+          instance.Name = name;
+          instance.Instance_Key_Type__c = 'INSTANCE';
+          if (Schema.sObjectType.SFInstance__c.isCreateable()) {
+            insert instance;
+          }      
+        }
+      }
   }
 
   public class SFDCInstance {

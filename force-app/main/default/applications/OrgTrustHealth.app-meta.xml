@@ -2,6 +2,8 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <brand>
         <headerColor>#0070D2</headerColor>
+        <logo>OrgTrustMonitor_Logo_128x128</logo>
+        <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <description>LWC Challenge providing OrgHealth as available from Trust.salesforce.com</description>
@@ -9,7 +11,7 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>OrgTrustHealth</label>
+    <label>Trust Monitor</label>
     <navType>Standard</navType>
     <tabs>OrgTrustHealth</tabs>
     <uiType>Lightning</uiType>

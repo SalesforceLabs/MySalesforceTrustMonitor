@@ -2,6 +2,6 @@
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Created by Lightning App Builder</description>
     <flexiPage>OrgTrustHealth</flexiPage>
-    <label>OrgTrustHealth</label>
+    <label>Trust Monitor</label>
     <motif>Custom67: Gears</motif>
 </CustomTab>
