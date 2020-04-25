@@ -52,5 +52,9 @@
         <members>Trust_API</members>
         <name>RemoteSiteSetting</name>
     </types>   
+    <types>
+        <members>OrgTrustMonitor_Logo_128x128</members>
+        <name>ContentAsset</name>
+    </types>
     <version>48.0</version>
 </Package>
