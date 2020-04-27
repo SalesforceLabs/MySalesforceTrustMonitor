@@ -13,13 +13,19 @@ We have created an App and a standalone lightning component that can be included
 
 ## Features of the My Salesforce Trust Monitor
 
-•	Out of the box by default your current Salesforce instance information is displayed without any configuration as soon as the App loads first time
-•	You can search any production Salesforce instance [e.g. NA111] and add to list of your Favorites by clicking on the star icon next to the name of the instance
-•	You can search any myDomain [e.g. heroku] and add to list of your Favorites by clicking on the star icon next to the name of the instance
-•	You can search any Marketing Cloud Instance [e.g. DB23] and add to list of your Favorites by clicking on the star icon next to the name of the instance
-•	You can search any B2C Commerce Cloud PODs [e.g. POD34] and add to list of your Favorites by clicking on the star icon next to the name of the instance
-•	Multiple users can use the App or standalone component and their list of instances will be saved from each other
-•	Responsive user interface that uses Salesforce Lightning Design Style system and will support using phone, tablet or Desktop screens
+###	•	Out of the box by default your current Salesforce instance information is displayed without any configuration as soon as the App loads first time
+
+###	•	You can search any production Salesforce instance [e.g. NA111] and add to list of your Favorites by clicking on the star icon next to the name of the instance
+
+###	•	You can search any myDomain [e.g. heroku] and add to list of your Favorites by clicking on the star icon next to the name of the instance
+
+###	•	You can search any Marketing Cloud Instance [e.g. DB23] and add to list of your Favorites by clicking on the star icon next to the name of the instance
+
+###	•	You can search any B2C Commerce Cloud PODs [e.g. POD34] and add to list of your Favorites by clicking on the star icon next to the name of the instance
+
+###	•	Multiple users can use the App or standalone component and their list of instances will be saved from each other
+
+###	•	Responsive user interface that uses Salesforce Lightning Design Style system and will support using phone, tablet or Desktop screens
 
 
 ## Installation Instructions
@@ -34,8 +40,11 @@ https://youtu.be/OqwV-gy43A4
 After installation simply follow these steps to start monitoring your Salesforce instances, myDomains, MIDs and PODs.
 
 1.	Search for your instance [e.g. NA111] or your myDomain in the search box at top
+
 2.	When the search returns your instance name or myDomain in the list of items found, simply click the star icon next to the name within the search results item to make it a Favorite and save it to your list of items to monitor
+
 3.	When you click the star icon, that instance will move to list of your favorites and your favorites are organized in two groups – instances and myDomains
+
 4.	To get the detail information for the specific to a given instance you have favorited, click on it and the Detail information section below will retrieve the information from trust.salesforce.com and display it in the tabs and timeline view below
 
 Here is another video that shows quickly how to add an instance for monitoring:
