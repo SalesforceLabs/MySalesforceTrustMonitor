@@ -3,8 +3,11 @@
 
 An essential tool for Admins for monitoring trust.salesforce.com for personalized list of Salesforce instances and mydomains 
 As Salesforce customers continue to use Salesforce at enterprise scale, customers are inevitably setting up many Salesforce instances across the enterprise for various lines of business, business units or some other logical areas. As the implementation and release timelines progress, it becomes harder for Salesforce Admin users to keep track of all the maintenances, alerts and notifications that are being updated on trust.salesforce.com website to plan their own timelines and communicate with their own users - internal or community users.
+
 We have seen Salesforce Admins struggle with keeping up to all the activity happening for their own Salesforce instances and it is laborious to go to trust.salesforce.com type in every instance name every time and navigate to all the tabs that contain the information the admin is looking for and make sense of it so they can digest and apply that information for their own subset of Salesforce Orgs. There is a feature on trust.salesforce.com that Admin user can use to subscribe to the trust.salesforce.com notifications via emails but email notifications often get lost in deluge of daily emails that Admins receive in their inbox and sometimes end up in junk email or lower priority folders and get lost. Admin user then ends up in a situation where they get “behind” on these notifications and cannot find the email they received when their teams asks them if there is anything they need to worry about for their own release planning.
+
 We recognize this pain point and we have created a solution for addressing this pain for Salesforce Admin users just for this purpose.
+
 We have created an App and a standalone lightning component that can be included on any lightning page by the Admin user via simple drag and drop configuration and start monitoring only the Salesforce instances, mydomains, Marketing Instances [MIDs] and B2C Ecommerce PODs, they are interested in for their own enterprise.
 
 
