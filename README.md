@@ -1,5 +1,5 @@
 
-# Introducing the My Salesforce Trust Monitor
+# Introducing My Salesforce Trust Monitor
 
 An essential tool for Admins for monitoring trust.salesforce.com for personalized list of Salesforce instances and mydomains 
 As Salesforce customers continue to use Salesforce at enterprise scale, customers are inevitably setting up many Salesforce instances across the enterprise for various lines of business, business units or some other logical areas. As the implementation and release timelines progress, it becomes harder for Salesforce Admin users to keep track of all the maintenances, alerts and notifications that are being updated on trust.salesforce.com website to plan their own timelines and communicate with their own users - internal or community users.
