@@ -1,108 +1,56 @@
-<<<<<<< HEAD
 
-# Salesforce App
+# Introducing the My Salesforce Trust Monitor
 
-This guide helps Salesforce developers who are new to Visual Studio Code go from zero to a deployed app using Salesforce Extensions for VS Code and Salesforce CLI.
+An essential tool for Admins for monitoring trust.salesforce.com for personalized list of Salesforce instances and mydomains 
+As Salesforce customers continue to use Salesforce at enterprise scale, customers are inevitably setting up many Salesforce instances across the enterprise for various lines of business, business units or some other logical areas. As the implementation and release timelines progress, it becomes harder for Salesforce Admin users to keep track of all the maintenances, alerts and notifications that are being updated on trust.salesforce.com website to plan their own timelines and communicate with their own users - internal or community users.
+We have seen Salesforce Admins struggle with keeping up to all the activity happening for their own Salesforce instances and it is laborious to go to trust.salesforce.com type in every instance name every time and navigate to all the tabs that contain the information the admin is looking for and make sense of it so they can digest and apply that information for their own subset of Salesforce Orgs. There is a feature on trust.salesforce.com that Admin user can use to subscribe to the trust.salesforce.com notifications via emails but email notifications often get lost in deluge of daily emails that Admins receive in their inbox and sometimes end up in junk email or lower priority folders and get lost. Admin user then ends up in a situation where they get “behind” on these notifications and cannot find the email they received when their teams asks them if there is anything they need to worry about for their own release planning.
+We recognize this pain point and we have created a solution for addressing this pain for Salesforce Admin users just for this purpose.
+We have created an App and a standalone lightning component that can be included on any lightning page by the Admin user via simple drag and drop configuration and start monitoring only the Salesforce instances, mydomains, Marketing Instances [MIDs] and B2C Ecommerce PODs, they are interested in for their own enterprise.
 
-## Part 1: Choosing a Development Model
 
-There are two types of developer processes or models supported in Salesforce Extensions for VS Code and Salesforce CLI. These models are explained below. Each model offers pros and cons and is fully supported.
+## Features of the My Salesforce Trust Monitor
 
-### Package Development Model
+•	Out of the box by default your current Salesforce instance information is displayed without any configuration as soon as the App loads first time
+•	You can search any production Salesforce instance [e.g. NA111] and add to list of your Favorites by clicking on the star icon next to the name of the instance
+•	You can search any myDomain [e.g. heroku] and add to list of your Favorites by clicking on the star icon next to the name of the instance
+•	You can search any Marketing Cloud Instance [e.g. DB23] and add to list of your Favorites by clicking on the star icon next to the name of the instance
+•	You can search any B2C Commerce Cloud PODs [e.g. POD34] and add to list of your Favorites by clicking on the star icon next to the name of the instance
+•	Multiple users can use the App or standalone component and their list of instances will be saved from each other
+•	Responsive user interface that uses Salesforce Lightning Design Style system and will support using phone, tablet or Desktop screens
 
-The package development model allows you to create self-contained applications or libraries that are deployed to your org as a single package. These packages are typically developed against source-tracked orgs called scratch orgs. This development model is geared toward a more modern type of software development process that uses org source tracking, source control, and continuous integration and deployment.
 
-If you are starting a new project, we recommend that you consider the package development model. To start developing with this model in Visual Studio Code, see [Package Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/package-development-model). For details about the model, see the [Package Development Model](https://trailhead.salesforce.com/en/content/learn/modules/sfdx_dev_model) Trailhead module.
+## Installation Instructions
 
-If you are developing against scratch orgs, use the command `SFDX: Create Project` (VS Code) or `sfdx force:project:create` (Salesforce CLI) to create your project. If you used another command, you might want to start over with that command.
+Installation is fairly straightforward, you would follow the standard process of getting the link to package installation URL from AppExchange listing for My Salesforce Trust Monitor and click on Get It Now button and follow the steps in video below:
 
-When working with source-tracked orgs, use the commands `SFDX: Push Source to Org` (VS Code) or `sfdx force:source:push` (Salesforce CLI) and `SFDX: Pull Source from Org` (VS Code) or `sfdx force:source:pull` (Salesforce CLI). Do not use the `Retrieve` and `Deploy` commands with scratch orgs.
+https://youtu.be/OqwV-gy43A4
 
-### Org Development Model
 
-The org development model allows you to connect directly to a non-source-tracked org (sandbox, Developer Edition (DE) org, Trailhead Playground, or even a production org) to retrieve and deploy code directly. This model is similar to the type of development you have done in the past using tools such as Force.com IDE or MavensMate.
+## Setting up your instances, myDomains, MIDs and PODs to monitor
 
-To start developing with this model in Visual Studio Code, see [Org Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/org-development-model). For details about the model, see the [Org Development Model](https://trailhead.salesforce.com/content/learn/modules/org-development-model) Trailhead module.
+After installation simply follow these steps to start monitoring your Salesforce instances, myDomains, MIDs and PODs.
 
-If you are developing against non-source-tracked orgs, use the command `SFDX: Create Project with Manifest` (VS Code) or `sfdx force:project:create --manifest` (Salesforce CLI) to create your project. If you used another command, you might want to start over with this command to create a Salesforce DX project.
+1.	Search for your instance [e.g. NA111] or your myDomain in the search box at top
+2.	When the search returns your instance name or myDomain in the list of items found, simply click the star icon next to the name within the search results item to make it a Favorite and save it to your list of items to monitor
+3.	When you click the star icon, that instance will move to list of your favorites and your favorites are organized in two groups – instances and myDomains
+4.	To get the detail information for the specific to a given instance you have favorited, click on it and the Detail information section below will retrieve the information from trust.salesforce.com and display it in the tabs and timeline view below
 
-When working with non-source-tracked orgs, use the commands `SFDX: Deploy Source to Org` (VS Code) or `sfdx force:source:deploy` (Salesforce CLI) and `SFDX: Retrieve Source from Org` (VS Code) or `sfdx force:source:retrieve` (Salesforce CLI). The `Push` and `Pull` commands work only on orgs with source tracking (scratch orgs).
+Here is another video that shows quickly how to add an instance for monitoring:
 
-## The `sfdx-project.json` File
+https://youtu.be/5ET_hsyza1c
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
 
-The most important parts of this file for getting started are the `sfdcLoginUrl` and `packageDirectories` properties.
+## Frequently Asked Questions 
 
-The `sfdcLoginUrl` specifies the default login URL to use when authorizing an org.
 
-The `packageDirectories` filepath tells VS Code and Salesforce CLI where the metadata files for your project are stored. You need at least one package directory set in your file. The default setting is shown below. If you set the value of the `packageDirectories` property called `path` to `force-app`, by default your metadata goes in the `force-app` directory. If you want to change that directory to something like `src`, simply change the `path` value and make sure the directory you’re pointing to exists.
+### Does the My Salesforce Trust Monitor require Lightning Experience?
+Yes. My Salesforce Trust Monitor is built using latest Lightning Web Component framework and will require Lightning Experience enabled
 
-```json
-"packageDirectories" : [
-    {
-      "path": "force-app",
-      "default": true
-    }
-]
-```
+### How much does the My Salesforce Trust Monitor cost?
+It is Free.
 
-## Part 2: Working with Source
+### Is there a limit on number of Salesforce instances I can monitor?
+No. There is no limit from the implementation perspective, however, monitoring hundreds of instances can make the screen look very busy.  
 
-For details about developing against scratch orgs, see the [Package Development Model](https://trailhead.salesforce.com/en/content/learn/modules/sfdx_dev_model) module on Trailhead or [Package Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/package-development-model).
-
-For details about developing against orgs that don’t have source tracking, see the [Org Development Model](https://trailhead.salesforce.com/content/learn/modules/org-development-model) module on Trailhead or [Org Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/org-development-model).
-
-## Part 3: Deploying to Production
-
-Don’t deploy your code to production directly from Visual Studio Code. The deploy and retrieve commands do not support transactional operations, which means that a deployment can fail in a partial state. Also, the deploy and retrieve commands don’t run the tests needed for production deployments. The push and pull commands are disabled for orgs that don’t have source tracking, including production orgs.
-
-# Deploy your changes to production using [packaging](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_dev2gp.htm) or by [converting your source](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force_source.htm#cli_reference_convert) into metadata format and using the [metadata deploy command](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force_mdapi.htm#cli_reference_deploy).
-
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
-
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
-
-_We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket._
-
----
-
-## Edit a file
-
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
-
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: _Delete this line to make a change to the README from Bitbucket._
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
-
----
-
-## Create a file
-
-Next, you’ll add a new file to this repository.
-
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
-
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
-
----
-
-## Clone a repository
-
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
-
-> > > > > > > 2d6777117856edb150171d72bacba9d4c5686436
+### Can I request a feature?
+Certainly. Please give us feedback via reviews or email and we will try to incorporate your request in future if possible.
