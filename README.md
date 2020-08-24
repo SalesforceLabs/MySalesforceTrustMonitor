@@ -32,7 +32,7 @@ We have created an App and a standalone lightning component that can be included
 
 Installation is fairly straightforward, you would follow the standard process of getting the link to package installation URL from AppExchange listing for My Salesforce Trust Monitor and click on Get It Now button and follow the steps in video below:
 
-https://youtu.be/OqwV-gy43A4
+[Installation Instruction Video](https://youtu.be/OqwV-gy43A4)
 
 
 ## Setting up your instances, myDomains, MIDs and PODs to monitor
@@ -49,7 +49,7 @@ After installation simply follow these steps to start monitoring your Salesforce
 
 Here is another video that shows quickly how to add an instance for monitoring:
 
-https://youtu.be/5ET_hsyza1c
+[How to add an Instance Video](https://youtu.be/5ET_hsyza1c)
 
 
 ## Frequently Asked Questions 
